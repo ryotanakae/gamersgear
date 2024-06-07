@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  follower: one
+  {to_table: MyString
+  : 
+  followed: one
+  {to_table: MyString
+  : 
+
+two:
+  follower: two
+  {to_table: MyString
+  : 
+  followed: two
+  {to_table: MyString
+  : 
