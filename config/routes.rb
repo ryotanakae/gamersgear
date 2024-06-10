@@ -17,10 +17,9 @@ Rails.application.routes.draw do
   
   scope module: :public do
     get '/about', to: 'homes#about'
-    get 'mypage', to: 'users#mypage'
     get 'users/information/edit', to: 'users#edit'
     patch 'users/information', to: 'users#update'
-    get 'users/unsubscribe', to: 'users#confirm'
+    get 'users/confirmation', to: 'users#confirm'
     patch 'users/withdraw', to: 'users#withdraw'
     
     resources :posts do
@@ -28,8 +27,14 @@ Rails.application.routes.draw do
       resources :likes, only: [:index, :create, :destroy]
     end
     
-    resources :relationships, only: [:index, :create, :destroy]
+    resources :users, only: [:show, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
+    
     resources :searches, only: [:index]
+    
   end
   
   #管理者側ルーティング

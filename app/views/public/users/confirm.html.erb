@@ -1,2 +1,19 @@
-<h1>Public::Users#confirm</h1>
-<p>Find me in app/views/public/users/confirm.html.erb</p>
+<div>
+  
+  <div>
+    <h2>退会手続き</h2>
+  </div>
+
+  <h3>退会手続きの前にご確認ください</h3>
+  
+  <p>
+    退会された場合には、会員登録情報や投稿データなどの</br>
+    全てのデータが削除されます。それでも退会しますか？
+  </p>
+  
+  <%= form_for(@user, url: user_withdraw_path(@user), method: :patch) do |f| %>
+    <%= f.submit '退会する' %>
+    <%= link_to '退会しない', user_path(@user) %>
+  <% end %>
+  
+</div>

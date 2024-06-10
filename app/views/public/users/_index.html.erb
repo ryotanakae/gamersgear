@@ -1,0 +1,8 @@
+<% users.each do |user| %>
+  <div class="user">
+    <%= link_to user_path(user) do %>
+      <%= image_tag user.get_image, size: "50x50" %>
+      <%= user.name %>
+    <% end %>
+  </div>
+<% end %>
