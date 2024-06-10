@@ -15,17 +15,19 @@ class User < ApplicationRecord
   has_one_attached :image
   
   def get_image
-    (image.attached?) ? image : 'no_image.jpg'
+    image.attached? ? image : 'no_image.jpg'
   end
   
   # フォローする
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
   end
+  
   #　フォローを解除する
   def unfollow(other_user)
     active_relationships.find_by(followed_id: other_user.id).destroy
   end
+  
   # フォローしているかの確認
   def following?(other_user)
     following.include?(other_user)
