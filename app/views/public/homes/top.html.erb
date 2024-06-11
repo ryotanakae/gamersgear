@@ -1,20 +1,23 @@
-<div>
+<div class="container-fluid">
+  <div class='row'>
 
-  <div>
-    ジャンル一覧(左に)
+    <div class="col-2 border">
+      カテゴリ一覧
+    </div>
+  
+    <div class="col-8 px-0 ">
+      投稿一覧
+      <%= render 'public/posts/index' %>
+  
+      <table>
+  
+      </table>
+  
+    </div>
+  
+    <div class="col-2 border">
+      <%= render 'public/users/info', user: @user %>
+    </div>
+
   </div>
-
-  <div>
-    投稿一覧
-
-    <table>
-
-    </table>
-
-  </div>
-
-  <div>
-    自分の情報（右にサイドバー）
-  </div>
-
 </div>

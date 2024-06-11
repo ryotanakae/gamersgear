@@ -1,0 +1,12 @@
+  <% @posts.each do |post| %>
+    <table class="table">
+      <tr>
+        <th>
+          <%= link_to post_path(post.id) do %>
+             <%= image_tag post.get_image, size:'180x130' %>
+          <% end %>
+          <%= link_to post.title, post_path(post) %>
+        </th>
+      </tr>
+    </table>
+  <% end %>

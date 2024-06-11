@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_10_084007) do
+ActiveRecord::Schema.define(version: 2024_06_11_133337) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 2024_06_10_084007) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "genres", force: :cascade do |t|
-    t.string "name", null: false
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -79,13 +79,13 @@ ActiveRecord::Schema.define(version: 2024_06_10_084007) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "genre_id", null: false
+    t.integer "category_id", null: false
     t.string "title", null: false
     t.text "body", null: false
     t.decimal "star", precision: 2, scale: 1, default: "0.0", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["genre_id"], name: "index_posts_on_genre_id"
+    t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 2024_06_10_084007) do
   add_foreign_key "likes", "users"
   add_foreign_key "post_comments", "posts"
   add_foreign_key "post_comments", "users"
-  add_foreign_key "posts", "genres"
+  add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"
   add_foreign_key "relationships", "users", column: "followed_id"
   add_foreign_key "relationships", "users", column: "follower_id"

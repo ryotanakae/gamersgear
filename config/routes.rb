@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'categories/index'
+    get 'categories/edit'
+  end
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :users,skip: [:passwords], controllers: {
@@ -43,7 +47,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :posts, only: [:index, :show, :destroy]
     resources :post_comments, only: [:index, :show, :destroy]
-    resources :genres
+    resources :categories
     resources :searches, only: [:index]
   end
 
