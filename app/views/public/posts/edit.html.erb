@@ -1,44 +1,54 @@
 <div class='container'>
-  <div class='row'>
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      
-  		<h1>編集</h1>
-  		
-  		<div>
-        <%= form_with(model: @post, local: true) do |f| %>
-      
-        <div>
-        
-          <div>
-            <%= f.label :image, "画像" %>
-            <%= f.file_field :image, accept: "image/*" %>
-          </div>
-          
-          <div>
-            <%= f.label :title, "タイトル" %>
-            <%= f.text_field :title %>
-          </div>
-          
-          <div>
-            <%= f.label :body, "本文" %>
-            <%= f.text_area :body %>
-          </div>
-          
-          <div>
-            <%= f.label :category_id, "カテゴリ" %>
-            <%= f.collection_select :category_id, Category.all, :id, :name, prompt: "カテゴリを選択" %>
-          </div>
-          
-          <div>
-            <%= f.submit '保存', class: "btn btn-sm" %>
-            <%= link_to '削除', @post, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm" %>
-          </div>
-          
-        </div>
-        
-        <% end %>
-      </div>
-      
+
+  <div class="row">
+    <div class="col-8 offset-2 my-3">
+      <h2 class="text-center">編集</h2>
     </div>
   </div>
+
+	<div class="row">
+    <div class="col-sm-6 px-sm-0 offset-3">
+      <%= form_with(model: @post, local: true) do |f| %>
+
+        <div>
+          <%= f.label :image, "画像" %>
+        </div>
+        <div class="pb-2">
+          <%= f.file_field :image, accept: "image/*" %>
+        </div>
+
+        <div>
+          <%= f.label :title, "タイトル" %>
+        </div>
+        <div class="pb-2">
+          <%= f.text_field :title, placeholder:"Title", class: "form-control" %>
+        </div>
+
+        <div>
+          <%= f.label :body, "本文" %>
+        </div>
+        <div class="pb-2">
+          <%= f.text_area :body, placeholder:"review", class: "form-control", rows: 15 %>
+        </div>
+
+        <div>
+          <%= f.label :category_id, "カテゴリ" %>
+        </div>
+        <div class="pb-4">
+          <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: "カテゴリを選択してください" }, { class: "form-control" } %>
+        </div>
+
+        <div class="mb-5 d-flex">
+          <div class="px-0">
+            <%= f.submit '保存', class: "btn btn-secondary btn-lg" %>
+          </div>
+          <div class="ml-3">
+            <%= link_to '削除', @post, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-lg" %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+
 </div>

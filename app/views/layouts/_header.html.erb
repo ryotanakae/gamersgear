@@ -11,45 +11,45 @@
               <!--ユーザーでログインしている時-->
               <li class="nav-item">
                 <%= link_to user_path(current_user), class: 'nav-link text-white' do %>
-                  <i class="fas fa-home"></i> マイページ
+                  マイページへ
                 <% end %>
               </li>
 
               <li class="nav-item">
                 <%= link_to new_post_path, class: 'nav-link text-white' do %>
-                  <i class="fa-solid fa-cart-shopping"></i> 投稿する
+                  投稿する
                 <% end %>
               </li>
 
               <li class="nav-item">
                 <%= link_to destroy_user_session_path, class: 'nav-link text-white', method: :delete do %>
-                  <i class="fas fa-sign-out-alt"></i> ログアウト
+                  ログアウト
                 <% end %>
               </li>
 
             <% elsif admin_signed_in? %>
               <!--管理者でログインしている時-->
               <li class="nav-item">
-                <%= link_to admin_users_path, class: 'nav-link text-white' do %>
-                  <i class="fas fa-user-circle"></i> 会員一覧
+                <%= link_to admin_root_path, class: 'nav-link text-white' do %>
+                  会員一覧
                 <% end %>
               </li>
 
               <li class="nav-item">
                 <%= link_to admin_posts_path, class: 'nav-link text-white' do %>
-                  <i class="fas fa-cheese"></i></i> 投稿一覧
+                  投稿一覧
                 <% end %>
               </li>
 
               <li class="nav-item">
                 <%= link_to admin_categories_path, class: 'nav-link text-white' do %>
-                  <i class="fa-solid fa-rectangle-list"></i></i> カテゴリ一覧
+                  カテゴリ一覧
                 <% end %>
               </li>
 
               <li class="nav-item">
                 <%= link_to destroy_admin_session_path, class: 'nav-link text-white', method: :delete do %>
-                  <i class="fas fa-sign-out-alt"></i> ログアウト
+                  ログアウト
                 <% end %>
               </li>
 
@@ -57,19 +57,19 @@
               <!--ログインしていない時-->
               <li class="nav-item">
                 <%= link_to about_path, class: 'nav-link text-white' do %>
-                  <i class="fas fa-link text"></i> About
+                  このサイトについて
                 <% end %>
               </li>
 
               <li class="nav-item">
                 <%= link_to new_user_registration_path, class: 'nav-link text-white' do %>
-                  <i class="fas fa-user-plus"></i></i> 新規登録
+                  新規会員登録
                 <% end %>
               </li>
 
               <li class="nav-item">
                 <%= link_to new_user_session_path, class: 'nav-link text-white' do %>
-                  <i class="fas fa-sign-in-alt"></i> ログイン
+                  ログインする
                 <% end %>
               </li>
 

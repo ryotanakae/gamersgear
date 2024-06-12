@@ -1,13 +1,22 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
+    
     <div class='col-md-3'>
-      <h2>マイプロフィール</h2>
+      <div class="mt-3 text-center">
+        <h3>プロフィール</h3>
+      </div>
       <%= render 'info', user: @user %>
     </div>
+    
     <div class='col-md-8 offset-md-1'>
-      <h2>レビュー一覧</h2>
-      
+      <div class="mt-3">
+        <h3>マイレビュー</h3>
+      </div>
+      <div class="mt-5">
+        <%= render 'public/posts/index', posts: @posts %>
+      </div>
     </div>
+    
   </div>
 </div>
 
