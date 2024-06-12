@@ -35,7 +35,7 @@ class Public::PostsController < ApplicationController
   def update
     @user = current_user
     @post = Post.find(params[:id])
-    if @post.upadate(post_params)
+    if @post.update(post_params)
       redirect_to post_path(@post.id), notice: '編集に成功しました'
     else
       render :edit
@@ -46,7 +46,7 @@ class Public::PostsController < ApplicationController
     @user = current_user
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path, notice: '投稿を削除しました'
+    redirect_to root_path, notice: '投稿を削除しました'
   end
   
   private

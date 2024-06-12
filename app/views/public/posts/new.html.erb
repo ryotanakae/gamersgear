@@ -1,37 +1,47 @@
-<div>
+<div class="container">
   
-  <div>
-    <h2>新規投稿</h2>
+  <div class="row">
+    <div class="col-8 offset-2">
+      <h2 class="text-center">新規投稿</h2>
+    </div>
   </div>
   
-  <div>
+  <div class="row">
+    <div class="col-sm-6 px-sm-0 offset-3">
     <%= form_with(model: @post, local: true) do |f| %>
     
-    <div>
+    
       
       <div>
         <%= f.label :image, "画像" %>
+      </div>
+      <div>
         <%= f.file_field :image, accept: "image/*" %>
       </div>
       
       <div>
         <%= f.label :title, "タイトル" %>
-        <%= f.text_field :title %>
+      </div>
+      <div>
+        <%= f.text_field :title, placeholder:"Title", class: "form-control" %>
       </div>
       
       <div>
         <%= f.label :body, "本文" %>
-        <%= f.text_area :body %>
+      </div>
+      <div>
+        <%= f.text_area :body, placeholder:"review", class: "form-control" %>
       </div>
       
       <div>
         <%= f.label :category_id, "カテゴリ" %>
-        <%= f.collection_select :category_id, Category.all, :id, :name, prompt: "カテゴリを選択" %>
+      </div>
+      <div>
+        <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: "カテゴリを選択してください" }, { class: "form-control" } %>
       </div>
       
       <div>
         <div class="form-group" id="star">
-          <%= f.label :star, "評価" %>
           <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
           <div id="post_raty"></div>
         </div>
@@ -57,11 +67,13 @@
       <div>
         <%= f.submit "投稿する", class:"btn btn-success" %>
       </div>
-      
     
-    </div>
+    
     
     <% end %>
+  </div>
+  
+    </div>
   </div>
   
 </div>

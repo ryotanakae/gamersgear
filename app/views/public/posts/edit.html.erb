@@ -1,2 +1,44 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      
+  		<h1>編集</h1>
+  		
+  		<div>
+        <%= form_with(model: @post, local: true) do |f| %>
+      
+        <div>
+        
+          <div>
+            <%= f.label :image, "画像" %>
+            <%= f.file_field :image, accept: "image/*" %>
+          </div>
+          
+          <div>
+            <%= f.label :title, "タイトル" %>
+            <%= f.text_field :title %>
+          </div>
+          
+          <div>
+            <%= f.label :body, "本文" %>
+            <%= f.text_area :body %>
+          </div>
+          
+          <div>
+            <%= f.label :category_id, "カテゴリ" %>
+            <%= f.collection_select :category_id, Category.all, :id, :name, prompt: "カテゴリを選択" %>
+          </div>
+          
+          <div>
+            <%= f.submit '保存', class: "btn btn-sm" %>
+            <%= link_to '削除', @post, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm" %>
+          </div>
+          
+        </div>
+        
+        <% end %>
+      </div>
+      
+    </div>
+  </div>
+</div>

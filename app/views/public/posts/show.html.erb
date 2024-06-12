@@ -19,15 +19,23 @@
       </div>
     </div>
     
-    <div class="d-flex justify-content-center">
-      <div>
+    <div>
+      
+      <div class="d-flex justify-content-center">
         <%= image_tag @post.get_image, size:'500x350' %>
       </div>
+      
+      <div class="text-right">
+        <% if @post.user == current_user %>
+          <td><%= link_to '編集する', edit_post_path(@post), class: "btn btn-success" %></td>
+        <% end %>
+      </div>
+      
     </div>
     
     
       
-    <div class="border">
+    <div class="">
       <h5>Review</h5>
       <%= @post.body %>
     </div>
