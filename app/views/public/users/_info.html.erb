@@ -4,11 +4,7 @@
 
     <tr>
       <div class="my-5 d-flex justify-content-center">
-        <% if @user %>
-          <%= image_tag @user.get_image, class: "rounded-circle", size: "150x150" %>
-        <% else %>
-          <%= image_tag "no_image.jpg", class: "rounded-circle", size: "150x150" %>
-        <% end %>
+        <%= image_tag @user.get_image, class: "rounded-circle", size: "150x150" %>
       <div>
     </tr>
 
