@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 offset-3">
+      <h4 class="my-4 ml-4">カテゴリ編集</h4> 
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= form_with model: @category, url: admin_category_path(@category), local: true do |f| %>
+        <div class="form-group d-flex align-items-center">
+          <%= f.text_field :name, class: "form-control mr-3", placeholder: "カテゴリ名", style: "width: 200px;" %>
+          <%= f.submit "保存", class: "btn btn-secondary" %>
+          <%= link_to "削除", admin_category_path(@category), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger ml-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

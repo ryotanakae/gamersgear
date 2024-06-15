@@ -1,0 +1,19 @@
+<div class="container">
+  <div class='row'>
+
+    <div class="col-2 border min-vh-100">
+      <!--カテゴリ一覧-->
+    </div>
+  
+    <div class="col-8 px-0">
+      <!--投稿一覧-->
+      <%= render 'public/posts/index' %>
+    </div>
+  
+    <div class="col-2 border min-vh-100">
+      <!--ユーザー詳細-->
+      <%= render 'public/users/info', user: @user %>
+    </div>
+
+  </div>
+</div>

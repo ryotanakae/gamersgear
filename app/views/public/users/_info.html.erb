@@ -1,0 +1,54 @@
+<% if @user %>
+
+  <table class='table'>
+
+    <tr>
+      <div class="my-5 d-flex justify-content-center">
+        <% if @user %>
+          <%= image_tag @user.get_image, class: "rounded-circle", size: "150x150" %>
+        <% else %>
+          <%= image_tag "no_image.jpg", class: "rounded-circle", size: "150x150" %>
+        <% end %>
+      <div>
+    </tr>
+
+    <tr>
+  	  <th><%= @user.name %></th>
+  	  <th></th>
+    </tr>
+
+    <tr>
+      <th>フォロー</th>
+      <th><%= link_to user.following.count, user_following_path(user) %></th>
+    </tr>
+
+    <tr>
+      <th>フォロワー</th>
+      <th><%= link_to user.followers.count, user_followers_path(user) %></th>
+    </tr>
+
+  </table>
+
+  <div class="mt-5">
+    <% if current_user == user %>
+      <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+        <i class="fas fa-user-cog"></i>プロフィールを編集
+      <% end %>
+    <% else %>
+      <td><%= render 'public/relationships/btn', user: @user %></td>
+    <% end %>
+  </div>
+
+<% else %>
+
+  <div class="py-5 text-center">
+    <p>現在ログインしていません</p>
+  </div>
+
+  <div class="pt-5 text-center">
+    <p>
+      <%= link_to "ログイン", new_user_session_path, class: 'text-blue' %>または、アカウントをお持ちでない方は <%= link_to "新規会員登録", new_user_registration_path, class: 'text-blue' %>してください。
+    </p>
+  </div>
+
+<% end %>

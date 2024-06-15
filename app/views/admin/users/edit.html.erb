@@ -1,0 +1,58 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-8 offset-2 my-3">
+      <h2 class="text-center"><%= @user.name %>さんの会員情報編集</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3 offset-4">
+      <%= form_with model: @user, url: admin_user_path(@user), local: true, method: :patch do |f| %>
+
+        <div>
+
+          <div class="mb-2">
+            会員ID &ensp; <%= @user.id %>
+          </div>
+
+          <div>
+            <%= f.label :name, "ニックネーム" %>
+          </div>
+          <div>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+
+          <div class="mt-2">
+            <%= f.label :email, "メールアドレス" %>
+          </div>
+          <div>
+            <%= f.text_field :email, class: "form-control" %>
+          </div>
+
+          <div class="mt-2">
+            <%= f.label :is_active, "会員ステータス" %>
+            <div class="d-flex">
+              <div>
+                <%= f.radio_button :is_active, true %>
+                <%= f.label :is_active_true, "有効" %>
+              </div>
+
+              <div class="ml-4">
+                <%= f.radio_button :is_active, false %>
+                <%= f.label :is_active_false, "退会" %>
+              </div>
+            </div>
+
+          </div>
+
+          <div>
+            <td><%= f.submit "保存", class:"btn btn-secondary" %></td>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
