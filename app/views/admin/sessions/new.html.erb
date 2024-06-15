@@ -1,43 +1,33 @@
 <div class="container">
   
   <div class="row">
-    <div class="col-md-3">
-      <h3 class="my-3 text-center">管理者ログイン</h3>
+    <div class="col-8 offset-2 my-3">
+      <h3 class="text-center">管理者ログイン</h3>
     </div>
   </div>
-  
-       <%= form_with model: resource, url: admin_session_path, local: true do |f| %>
-        <% if flash[:alert] %>
-          <div class="alert alert-danger"><%= flash[:alert] %></div>
-        <% end %>
         
-        <div class="row">
-          <div class="col-md-8 offset-md-1">
-            
-            <div>
-              <table class="table table-borderless">
+    <div class="row d-flex justify-content-center">
+      <div class="col-sm-4">
+      <%= form_with model: resource, url: admin_session_path, local: true do |f| %>
                 
-                <tr class="py-3">
-                  <td><%= f.label :email, "メールアドレス" %></td>
-                  <td><%= f.email_field :email, autofocus: true, size:"50%", autocomplete: "email", placeholder: "sample@example.com" %></td>
-                </tr>
-                
-                <tr class="py-3">
-                  <td><%= f.label :password, "パスワード" %></td>
-                  <td><%= f.password_field :password, size:"50%", autocomplete: "current-password" %></td>
-                </tr>
-                
-                <tr>
-                  <th></th>
-                  <td><%= f.submit "ログイン", class: "btn btn-primary" %></td>
-                </tr>
-                
-              </table>
-              <%= render "admin/shared/links" %>
-            </div>
-            
-          </div>
+        <div class="field mb-1">
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.email_field :email, autofocus: true, size:"50%", autocomplete: "email", class: "form-control" %>
         </div>
+                
+        <div class="field mb-2">
+          <%= f.label :password, "パスワード" %>
+          <%= f.password_field :password, size:"50%", autocomplete: "current-password", class: "form-control" %>
+        </dov>
+                
+        <div class="actions mt-3">
+          <%= f.submit "ログイン", class: "btn btn-info btn-block" %>
+        </div>
+                
+        <%= render "admin/shared/links" %>
+            
       <% end %>
+      </div>
+    </div>
       
 </div>

@@ -1,11 +1,11 @@
 <div class="container">
-  
+
   <div class="mt-2">
     <h3>会員一覧</h3>
   </div>
-  
+
   <table class="table table-striped">
-    
+
     <thead>
       <tr>
         <th>ID</th>
@@ -16,7 +16,7 @@
         <th>アクション</th>
       </tr>
     </thead>
-    
+
     <tbody>
       <% @users.each do |user| %>
         <tr>
@@ -24,15 +24,20 @@
           <td><%= link_to user.name, admin_user_path(user) %></td>
           <td><%= user.email %></td>
           <td><%= user.created_at.strftime('%Y-%m-%d') %></td>
-          <td><%= user.is_active ? '有効' : '退会済み' %></td>
           <td>
-            <%= link_to '編集', edit_admin_user_path(user), class: 'btn btn-secondary' %>
-            <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+            <% if user.is_active %>
+              <p class="text-black">有効</p>
+            <% else %>
+              <p class="text-danger">退会済み</p>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to '編集する', edit_admin_user_path(user), class: 'btn btn-secondary' %>
           </td>
         </tr>
       <% end %>
     </tbody>
-    
+
   </table>
-  
+
 </div>

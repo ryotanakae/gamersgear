@@ -19,18 +19,18 @@ class User < ApplicationRecord
   end
   
   # フォローする
-  def follow(other_user)
-    active_relationships.create(followed_id: other_user.id)
+  def follow(user)
+    active_relationships.create(followed_id: user.id)
   end
   
   #　フォローを解除する
-  def unfollow(other_user)
-    active_relationships.find_by(followed_id: other_user.id).destroy
+  def unfollow(user)
+    active_relationships.find_by(followed_id: user.id).destroy
   end
   
   # フォローしているかの確認
-  def following?(other_user)
-    following.include?(other_user)
+  def following?(user)
+    following.include?(user)
   end
   
   devise :database_authenticatable, :registerable,

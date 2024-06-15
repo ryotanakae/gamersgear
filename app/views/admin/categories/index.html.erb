@@ -1,38 +1,39 @@
 <div class="container">
-  <h4 class="my-4">カテゴリ一覧・追加</h4>
-  
-  <div class="row mb-4">
-    <div class="col">
+  <h4 class="my-4 text-center">カテゴリ一覧・追加</h4>
+
+  <div class="row m-4">
+    <div class="col d-flex justify-content-center">
       <%= form_with(model: @category, local: true, url: admin_categories_path, class: "form-inline") do |f| %>
-        <div class="form-group mr-2">
-          <%= f.label :name, "カテゴリ名", class: "mr-2" %>
-          <%= f.text_field :name, class: "form-control mr-2", placeholder: "カテゴリ名" %>
+
+        <div class=" mt-1">
+          <%= f.text_field :name, placeholder: "カテゴリ名", class: "form-control" %>
+          <%= f.submit "登録する", class: "btn btn-secondary ml-3" %>
         </div>
-        <%= f.submit "新規登録", class: "btn btn-success" %>
+
       <% end %>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row d-flex justify-content-center">
     <div class="col-md-4">
       <table class="table table-bordered">
-          
+
         <thead class="thead-light">
           <tr>
             <th>カテゴリ</th>
             <th></th>
           </tr>
         </thead>
-        
+
         <tbody>
           <% @categories.each do |category| %>
             <tr>
               <td><%= category.name %></td>
-              <td class="text-center"><%= link_to '編集する', edit_admin_category_path(category), class: "btn btn-success btn-sm" %></td>
+              <td class="text-center"><%= link_to '編集する', edit_admin_category_path(category), class: "btn btn-secondary btn-sm" %></td>
             </tr>
           <% end %>
         </tbody>
-        
+
       </table>
     </div>
   </div>

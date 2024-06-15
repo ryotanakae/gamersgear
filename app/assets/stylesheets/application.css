@@ -13,20 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-}
-
-main {
-    flex: 1;
-}
-
-footer {
-    background-color: #f0f0f0; /* フッターの背景色 */
-    padding: 10px;
-    text-align: center;
-}

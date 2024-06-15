@@ -5,25 +5,26 @@
     <tr>
       <div class="my-5 d-flex justify-content-center">
         <% if @user %>
-          <%= image_tag @user.get_image, size: "150x150" %>
+          <%= image_tag @user.get_image, class: "rounded-circle", size: "150x150" %>
         <% else %>
-          <%= image_tag "no_image.jpg" %>
+          <%= image_tag "no_image.jpg", class: "rounded-circle", size: "150x150" %>
         <% end %>
       <div>
     </tr>
 
     <tr>
   	  <th><%= @user.name %></th>
+  	  <th></th>
     </tr>
 
     <tr>
       <th>フォロー</th>
-      <th><%= link_to @user.following.count, user_followings_path(@user) %></th>
+      <th><%= link_to user.following.count, user_following_path(user) %></th>
     </tr>
 
     <tr>
       <th>フォロワー</th>
-      <th><%= link_to user.followers.count, user_followers_path(@user) %></th>
+      <th><%= link_to user.followers.count, user_followers_path(user) %></th>
     </tr>
 
   </table>

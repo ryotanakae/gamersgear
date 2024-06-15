@@ -33,8 +33,8 @@ Rails.application.routes.draw do
     
     resources :users, only: [:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
-      get 'followings' => 'relationships#followings', as: 'followings'
-      get 'followers' => 'relationships#followers', as: 'followers'
+      get "following" => "relationships#following", as: "following"
+      get "followers" => "relationships#followers", as: "followers"
     end
     
     resources :searches, only: [:index]
@@ -44,7 +44,12 @@ Rails.application.routes.draw do
   #管理者側ルーティング
   namespace :admin do
     root to: 'homes#top'
-    resources :users, only: [:index, :show, :edit, :update, :destroy]
+    resources :users, only: [:index, :show, :edit, :update, :destroy] do
+      member do
+        patch :withdaw # memberをつけると:idが付与される
+      end
+    end
+    
     resources :posts, only: [:index, :show, :destroy]
     resources :post_comments, only: [:index, :show, :destroy]
     resources :categories

@@ -16,9 +16,9 @@
       <main class="flex-grow-1">
   
         <% if flash[:notice] %>
-          <div class="alert alert-success text-center"><%= flash[:notice] %></div>
+          <div class="alert alert-success text-center m-0"><%= flash[:notice] %></div>
         <% elsif flash[:alert] %>
-          <div class="alert alert-danger text-center"><%= flash[:alert] %></div>
+          <div class="alert alert-danger text-center "><%= flash[:alert] %></div>
         <% end %>
   
         <%= yield %>
