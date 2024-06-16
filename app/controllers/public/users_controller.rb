@@ -30,7 +30,7 @@ class Public::UsersController < ApplicationController
     # is_activeカラムをfalseに変更する
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
-    redirect_to root_path
+    redirect_to new_user_registration_path
   end
 
   private

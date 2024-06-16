@@ -37,4 +37,21 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  before_update :deactivate_user, if: :deactivating?
+
+  private
+
+  # is_activeがfalseになる場合に呼ばれるメソッド
+  def deactivate_user
+    posts.destroy_all
+    post_comments.destroy_all
+    likes.destroy_all
+  end
+
+  # is_activeがfalseに変更されるかどうかをチェックするメソッド
+  def deactivating?
+    is_active_changed? && !is_active
+  end
+
 end
