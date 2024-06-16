@@ -15,6 +15,7 @@ class Public::UsersController < ApplicationController
     if @user .update(user_params)
       redirect_to user_path(@user), notice: 'プロフィールが更新されました'
     else
+      flash.now[:alert] = @user.errors.full_messages.join(", ")
       render :edit
     end
   end
