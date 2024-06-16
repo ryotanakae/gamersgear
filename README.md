@@ -26,7 +26,11 @@
 後ほど作成予定
 
 ## 開発環境
-後ほど作成予定
+- OS:Linux
+- 言語:HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク:Ruby on Rails
+- JSライブラリ:jQuery
+- IDE:Cloud9
 
 ## 使用素材
 - フリーイラスト素材として以下を使用

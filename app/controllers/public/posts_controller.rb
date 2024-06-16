@@ -38,6 +38,7 @@ class Public::PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post.id), notice: '編集に成功しました'
     else
+      flash.now[:alert] = @post.errors.full_messages.join(", ")
       render :edit
     end
   end
