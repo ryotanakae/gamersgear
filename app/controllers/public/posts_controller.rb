@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, unless: :admin_signed_in?
+  before_action :set_categories
   
   def new
     @post = Post.new
@@ -19,7 +20,12 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @posts = @category.posts
+    else
+      @posts = Post.all
+    end
   end
 
   def show
@@ -54,6 +60,10 @@ class Public::PostsController < ApplicationController
   
   def post_params
     params.require(:post).permit(:title, :body, :star, :category_id, :image)
+  end
+  
+  def set_categories
+    @categories = Category.all
   end
   
 end

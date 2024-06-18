@@ -1,0 +1,52 @@
+<div class="container">
+  
+  <div class="row">
+    <div class="col-8 offset-4 my-3">
+      <h3>検索結果</h3>
+    </div>
+  </div>
+  
+  <% if @range == "User" %>
+    
+    <div class="row d-flex justify-content-center min-vh-100">
+      <div class="col-sm-4 px-0 border-right border-left min-vh-100">
+        <% if @users.any? %>
+        
+          <table class="table table-striped">
+            <% @users.each do |user| %>
+              <tr>
+                <td class="py-1">
+                  <div class="d-flex align-items-center">
+          
+                    <div>
+                      <%= image_tag user.get_image, class: "rounded-circle", size: "50x50" %>
+                    </div>
+          
+                    <div>
+                      <%= link_to user_path(user) do %>
+                        <span class="ml-3"><%= user.name %></span>
+                      <% end %>
+                    </div>
+
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+          
+        <% else %>
+          <p>該当するユーザーが見つかりませんでした。</p>
+        <% end %>
+      </div>
+    </div>
+      
+  <% elsif @range == "Post" %>
+  
+    <% if @posts.any? %>
+      <%= render 'public/posts/index' %>      
+    <% else %>
+      <p>該当する投稿が見つかりませんでした。</p>
+    <% end %>
+    
+  <% end %>
+</div>

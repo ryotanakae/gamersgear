@@ -14,5 +14,15 @@ class Post < ApplicationRecord
   def get_image
     image.attached? ? image : 'default-image.jpg'
   end
-
+  
+  def self.looks(search, word)
+    if search == "perfect_match"
+      where("title LIKE ? OR body LIKE ?", word, word)
+    elsif search == "partial_match"
+      where("title LIKE ? OR body LIKE ?", "%#{word}%", "%#{word}%")
+    else
+      where("title LIKE ? OR body LIKE ?", "%#{word}%", "%#{word}%")  # デフォルトは部分一致
+    end
+  end
+  
 end

@@ -1,0 +1,21 @@
+<div class="mt-5">
+  
+  <table class="table table-borderless">
+    
+    <tr class="text-center">
+      <th>
+        カテゴリ一覧
+      </th>
+    </tr>
+    
+    <% @categories.each do |category| %>
+      <tr>
+        <th>
+          <%= link_to category.name, posts_path(category_id: category.id) %>
+        </th>
+      </tr>
+    <% end %>
+    
+  </table>
+  
+</div>

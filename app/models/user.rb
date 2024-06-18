@@ -34,6 +34,16 @@ class User < ApplicationRecord
   def following?(user)
     following.include?(user)
   end
+  
+  def self.looks(search, word)
+    if search == "perfect_match"
+      where("name LIKE ?", word).where(is_active: true)
+    elsif search == "partial_match"
+      where("name LIKE ?", "%#{word}%").where(is_active: true)
+    else
+      where("name LIKE ?", "%#{word}%").where(is_active: true)  # デフォルトは部分一致
+    end
+  end
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

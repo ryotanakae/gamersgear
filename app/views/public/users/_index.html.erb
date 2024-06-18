@@ -1,35 +1,33 @@
 <table class="table table-striped">
-  <tbody>
-    <% users.each do |user| %>
+  <% users.each do |user| %>
 
-        <tr>
-          <td class="py-1">
+    <tr>
+      <td class="py-1">
 
-            <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center">
 
-              <div>
-                <%= image_tag user.get_image, class: "rounded-circle", size: "50x50" %>
-              </div>
+          <div>
+            <%= image_tag user.get_image, class: "rounded-circle", size: "50x50" %>
+          </div>
 
-              <div>
-                <%= link_to user_path(user) do %>
-                  <span class="ml-3"><%= user.name %></span>
-                <% end %>
-              </div>
+          <div>
+            <%= link_to user_path(user) do %>
+              <span class="ml-3"><%= user.name %></span>
+            <% end %>
+          </div>
 
-              <div class="ml-auto">
-                <% if current_user.following?(user) %>
-                  <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, class: "btn btn-sm btn-outline-secondary" %>
-                <% else %>
-                  <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-sm btn-outline-secondary" %>
-                <% end %>
-              </div>
+          <div class="ml-auto">
+            <% if current_user.following?(user) %>
+              <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, class: "btn btn-sm btn-outline-secondary" %>
+            <% else %>
+              <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-sm btn-outline-secondary" %>
+            <% end %>
+          </div>
 
-            </div>
+        </div>
 
-          </td>
-        </tr>
+      </td>
+    </tr>
 
     <% end %>
-  </tbody>
 </table>
