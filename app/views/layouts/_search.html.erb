@@ -1,17 +1,7 @@
-<% if user_signed_in? || admin_signed_in? %>
-  <div class="ml-4">
-    <% if user_signed_in? %>
-      <%= form_with url: search_path, local: true, method: :get, class: 'form-inline mr-2' do |f| %>
-        <%= f.select :range, options_for_select([['ユーザー', 'User'], ['レビュー', 'Post']]), class: 'form-control ml-2' %>
-        <%= f.text_field :word, placeholder: "キーワードを入力", class: 'form-control ml-2' %>
-        <%= f.submit "検索", class: "btn btn-secondary" %>
-      <% end %>
-    <% elsif admin_signed_in? %>
-      <%= form_with url: admin_search_path, local: true, method: :get, class: 'form-inline mr-2' do |f| %>
-        <%= f.select :range, options_for_select([['ユーザー', 'User'], ['レビュー', 'Post']]), class: 'form-control ml-2' %>
-        <%= f.text_field :word, placeholder: "キーワードを入力", class: 'form-control ml-2' %>
-        <%= f.submit "検索", class: "btn btn-secondary" %>
-      <% end %>
-    <% end %>
-  </div>
-<% end %>
+<div class="ml-5 search-form">
+  <%= form_with url: (admin_signed_in? ? admin_search_path : search_path), local: true, method: :get, class: 'form-inline' do |f| %>
+    <%= f.select :range, options_for_select([['ユーザー', 'User'], ['レビュー', 'Post'], (admin_signed_in? ? ['コメント', 'PostComment'] : nil)].compact), class: 'form-control'  %>
+    <%= f.text_field :word, placeholder: "キーワードを入力", class: 'form-control' %>
+    <%= f.submit "検索", class: 'btn btn-primary' %>
+  <% end %>
+</div>

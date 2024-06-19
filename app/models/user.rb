@@ -2,7 +2,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-
+  has_many :liked_posts, through: :likes, source: :post
+  
   # フォローされている関連付け
   has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   # フォロワーの取得
@@ -34,7 +35,7 @@ class User < ApplicationRecord
   def following?(user)
     following.include?(user)
   end
-  
+
   def self.looks(search, word)
     if search == "perfect_match"
       where("name LIKE ?", word).where(is_active: true)
@@ -43,6 +44,20 @@ class User < ApplicationRecord
     else
       where("name LIKE ?", "%#{word}%").where(is_active: true)  # デフォルトは部分一致
     end
+  end
+
+  # ゲストユーザー機能
+  GUEST_USER_EMAIL = "guest@example.com"
+
+  def self.guest
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲストユーザー"
+    end
+  end
+
+  def guest_user?
+    email == GUEST_USER_EMAIL
   end
 
   devise :database_authenticatable, :registerable,

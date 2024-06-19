@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!, unless: :admin_signed_in?
+  before_action :authenticate_user!, except: [:index, :show, :likes], unless: :admin_signed_in?
+  before_action :ensure_guest_user, only: [:edit]
 
   def show
     @user = User.find(params[:id])
@@ -32,11 +33,23 @@ class Public::UsersController < ApplicationController
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to new_user_registration_path
   end
+  
+  def likes
+    @user = User.find(params[:id])
+    @liked_posts = @user.liked_posts
+  end
 
   private
 
   def user_params
     params.require(:user).permit(:name, :email, :is_active, :image)
   end
+  
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.email == "guest@example.com"
+      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
+  end  
 
 end

@@ -1,6 +1,10 @@
 class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
-  
+
+  def index
+    @posts = Post.all
+  end
+
   def show
     @post = Post.find(params[:id])
     @user = @post.user
@@ -9,7 +13,7 @@ class Admin::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    render 'public/posts/edit'
+    render template: 'public/posts/edit'
   end
 
   def update
@@ -18,7 +22,7 @@ class Admin::PostsController < ApplicationController
       redirect_to admin_post_path(@post), notice: '編集に成功しました'
     else
       flash.now[:alert] = @post.errors.full_messages.join(", ")
-      render 'public/posts/edit'
+      render template: 'public/posts/edit'
     end
   end
 
@@ -27,12 +31,11 @@ class Admin::PostsController < ApplicationController
     @post.destroy
     redirect_to admin_posts_path, notice: '投稿を削除しました'
   end
-    
+
   private
-    
+
   def post_params
     params.require(:post).permit(:title, :body, :star, :category_id, :image)
   end
-  
-  end
+
 end

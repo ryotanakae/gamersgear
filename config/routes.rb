@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'categories/index'
-    get 'categories/edit'
-  end
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :users,skip: [:passwords], controllers: {
@@ -15,6 +11,11 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
+  
+  # ゲストログイン用
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
 
   # 会員側ルーティング
   root to: 'public/homes#top'
@@ -28,13 +29,16 @@ Rails.application.routes.draw do
 
     resources :posts do
       resources :post_comments, only: [:create, :destroy], path: 'comments' # URLをpost_commentsからcommentsに変更する
-      resources :likes, only: [:index, :create, :destroy]
+      resource :like, only: [:index, :create, :destroy]
     end
 
     resources :users, only: [:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
       get "following" => "relationships#following", as: "following"
       get "followers" => "relationships#followers", as: "followers"
+      member do
+        get :likes
+      end
     end
     
     get 'search', to: 'searches#search'

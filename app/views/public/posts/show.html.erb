@@ -2,11 +2,11 @@
   <div class="row">
 
   <div class="col-2 border min-vh-100">
-    <p class="text-center pt-4">カテゴリ</p>
+    <%= render 'layouts/categories' %>
   </div>
 
   <div class="col-8 d-flex flex-column">
-    
+
     <div class="d-flex justify-content-center mt-5">
       <%= image_tag @post.get_image, size:'500x350' %>
     </div>
@@ -29,15 +29,19 @@
       </div>
     </div>
 
-    <div class="mt-3">
+    <div class="mt-3 pb-2 border-bottom thick-border">
       <h5>Review</h5>
       <%= @post.body %>
     </div>
-    
+
     <div class="mt-3">
-      <p>コメント一覧</p>
+      <%= render 'public/post_comments/comment', post: @post %>
     </div>
-    
+
+    <div class="mt-3">
+      <%= render 'public/post_comments/form', post: @post %>
+    </div>
+
   <div>
 
   </div>

@@ -22,19 +22,26 @@
       <th>フォロワー</th>
       <th><%= link_to user.followers.count, user_followers_path(user) %></th>
     </tr>
+    
+    <tr>
+      <th><%= link_to "いいね", likes_user_path(@user) %></th>
+    </tr>
 
   </table>
 
   <div class="mt-5">
-    <% if current_user == user || admin_signed_in? %>
-      <% edit_path = admin_signed_in? ? edit_admin_user_path(user) : edit_user_path(user) %>
-      <%= link_to edit_path, class: "btn btn-outline-secondary btn-block" do %>
-        <i class="fas fa-user-cog"></i> プロフィールを編集
+    <% if user.email != "guest@example.com" %>
+      <% if current_user == user || admin_signed_in? %>
+        <% edit_path = admin_signed_in? ? edit_admin_user_path(user) : edit_user_path(user) %>
+        <%= link_to edit_path, class: "btn btn-outline-secondary btn-block" do %>
+          <i class="fas fa-user-cog"></i> プロフィールを編集
+        <% end %>
+      <% else %>
+        <td><%= render 'public/relationships/btn', user: @user %></td>
       <% end %>
-    <% else %>
-      <td><%= render 'public/relationships/btn', user: @user %></td>
     <% end %>
   </div>
+  
 <% else %>
 
   <div class="py-5 text-center">

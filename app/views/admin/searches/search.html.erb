@@ -48,5 +48,13 @@
       <p>該当する投稿が見つかりませんでした。</p>
     <% end %>
     
+  <% elsif @range == "PostComment" %>
+  
+    <% if @post_comments.any? %>
+      <%= render 'admin/post_comments/index' %>
+    <% else %>
+      <p>該当するコメントが見つかりませんでした。</p>
+    <% end %>
+    
   <% end %>
 </div>

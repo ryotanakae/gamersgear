@@ -14,7 +14,13 @@ class Post < ApplicationRecord
   def get_image
     image.attached? ? image : 'default-image.jpg'
   end
-  
+
+  #　いいね機能
+  def likes_by?(user)
+    likes.exists?(user_id: user.id)
+  end
+
+  # 検索機能
   def self.looks(search, word)
     if search == "perfect_match"
       where("title LIKE ? OR body LIKE ?", word, word)

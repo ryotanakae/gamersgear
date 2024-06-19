@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="col-8 offset-2 my-3">
-      <h2 class="text-center">新規投稿</h2>
+      <h4 class="text-center">新規投稿</h4>
     </div>
   </div>
 
@@ -61,9 +61,11 @@
           });
         </script>
       </div>
-
+      
       <div class="mb-4">
+        <% unless current_user&.guest_user? %>
         <%= f.submit "投稿する", class:"btn btn-secondary" %>
+        <% end %>
       </div>
 
     <% end %>

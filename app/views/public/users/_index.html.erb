@@ -17,10 +17,20 @@
           </div>
 
           <div class="ml-auto">
-            <% if current_user.following?(user) %>
-              <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, class: "btn btn-sm btn-outline-secondary" %>
+            <% if current_user %>
+              <% unless user.guest_user? || current_user.guest_user? %>
+                <% if current_user == user %>
+                <!--自分にはフォロー/フォロー解除ボタンが表示されない-->
+                <% else %>
+                  <% if current_user.following?(user) %>
+                    <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, class: "btn btn-sm btn-outline-secondary" %>
+                  <% else %>
+                    <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-sm btn-outline-secondary" %>
+                  <% end %>
+                <% end %>
             <% else %>
-              <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-sm btn-outline-secondary" %>
+              <!--ログインしていない時は空白-->
+              <% end %>
             <% end %>
           </div>
 

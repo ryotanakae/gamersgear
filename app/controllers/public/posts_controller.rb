@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_user!, unless: :admin_signed_in?
+  before_action :authenticate_user!, except: [:index, :show], unless: :admin_signed_in?
   before_action :set_categories
   
   def new
@@ -26,6 +26,20 @@ class Public::PostsController < ApplicationController
     else
       @posts = Post.all
     end
+    # ソート機能のロジック desc=降順 asc=昇順
+    case params[:sort]
+    when 'newest'
+      @posts = @posts.order(created_at: :desc) # 新着順
+    when 'oldest'
+      @posts = @posts.order(created_at: :asc) # 古い順
+    when 'highest_rated'
+      @posts = @posts.order(star: :desc) # 評価の高い順
+    when 'most_liked'
+      @posts = @posts.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC') # いいねの多い順
+    when 'most_commented'
+       @posts = @posts.left_joins(:post_comments).group(:id).order('COUNT(post_comments.id) DESC') # コメントの多い順
+    end
+    
   end
 
   def show

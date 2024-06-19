@@ -1,0 +1,23 @@
+<table class="table table-striped">
+  
+  <thead>
+    <tr>
+      <th class="col-2">タイトル</th>
+      <th class="col-2">ユーザー名</th>
+      <th class="col-7">コメント内容</th>
+      <th class="col-2"></th>
+    </tr>
+  </thead>
+    
+  <tbody>
+    <% @post_comments.each do |comment| %>
+      <tr>
+        <td><%= link_to comment.post.title, post_path(comment.post) %></td>
+        <td><%= link_to comment.user.name, user_path(comment.user) %></td>
+        <td><%= comment.body %></td>
+        <td><%= link_to '削除', admin_post_comment_path(comment), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
