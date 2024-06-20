@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
-  
+
   # フォローされている関連付け
   has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   # フォロワーの取得
@@ -72,6 +72,8 @@ class User < ApplicationRecord
     posts.destroy_all
     post_comments.destroy_all
     likes.destroy_all
+    passive_relationships.destroy_all
+    active_relationships.destroy_all
   end
 
   # is_activeがfalseに変更されるかどうかをチェックするメソッド
