@@ -15,7 +15,7 @@
         <td><%= link_to comment.post.title, post_path(comment.post) %></td>
         <td><%= link_to comment.user.name, user_path(comment.user) %></td>
         <td><%= comment.body %></td>
-        <td><%= link_to '削除', admin_post_comment_path(comment), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+        <td><%= link_to '削除', post_post_comment_path(comment.post, comment), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
       </tr>
     <% end %>
   </tbody>

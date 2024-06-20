@@ -1,5 +1,5 @@
 class Public::RelationshipsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, unless: :admin_signed_in?
 
   def create
     user = User.find(params[:user_id])

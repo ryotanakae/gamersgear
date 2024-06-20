@@ -17,6 +17,7 @@ class Admin::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to admin_root_path(@user), notice: "会員情報が更新されました"
     else
+      flash.now[:alert] = @user.errors.full_messages.join(", ")
       render :edit
     end
   end

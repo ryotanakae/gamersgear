@@ -9,10 +9,10 @@
   <% if @range == "User" %>
     
     <div class="row d-flex justify-content-center min-vh-100">
-      <div class="col-sm-4 px-0 border-right border-left min-vh-100">
-        <% if @users.any? %>
+      <div class="col-9 px-0 min-vh-100">
         
-          <table class="table table-striped">
+        <% if @users.any? %>
+          <table class="table table-striped border-bottom">
             <% @users.each do |user| %>
               <tr>
                 <td class="py-1">
@@ -23,9 +23,7 @@
                     </div>
           
                     <div>
-                      <%= link_to user_path(user) do %>
-                        <span class="ml-3"><%= user.name %></span>
-                      <% end %>
+                      <span><%= link_to user.name, user_path(user) %></span>
                     </div>
 
                   </div>
@@ -33,9 +31,8 @@
               </tr>
             <% end %>
           </table>
-          
         <% else %>
-          <p>該当するユーザーが見つかりませんでした。</p>
+          <h5 class="pt-5 text-center">該当するユーザーが見つかりませんでした。</h5>
         <% end %>
       </div>
     </div>
@@ -45,7 +42,7 @@
     <% if @posts.any? %>
       <%= render 'public/posts/index' %>      
     <% else %>
-      <p>該当する投稿が見つかりませんでした。</p>
+      <h5 class="pt-5 text-center">該当する投稿が見つかりませんでした。</h5>
     <% end %>
     
   <% elsif @range == "PostComment" %>
@@ -53,7 +50,7 @@
     <% if @post_comments.any? %>
       <%= render 'admin/post_comments/index' %>
     <% else %>
-      <p>該当するコメントが見つかりませんでした。</p>
+      <h5 class="pt-5 text-center">該当するコメントが見つかりませんでした。</h5>
     <% end %>
     
   <% end %>

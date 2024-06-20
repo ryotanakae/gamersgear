@@ -2,11 +2,11 @@
 
   <% if post.likes_by?(current_user) %>
     <%= link_to post_like_path(post, current_user.likes.find_by(post_id: post.id)), method: :delete do %>
-      ♥<%= post.likes.count %>
+      <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i><%= post.likes.count %>
     <% end %>
   <% else %>
     <%= link_to post_like_path(post), method: :post do %>
-      ♡<%= post.likes.count %>
+      <i class="fas fa-heart" aria-hidden="true"></i><%= post.likes.count %>
     <% end %>
   <% end %>
   

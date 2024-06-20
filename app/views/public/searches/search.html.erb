@@ -9,11 +9,11 @@
   <% if @range == "User" %>
     
     <div class="row d-flex justify-content-center min-vh-100">
-      <div class="col-sm-4 px-0 border-right border-left min-vh-100">
+      <div class="col-9 px-0 min-vh-100">
         <% if @users.any? %>
           <%= render 'public/users/index', users: @users %>
         <% else %>
-          <p>該当するユーザーが見つかりませんでした。</p>
+          <h5 class="pt-5 text-center">該当するユーザーが見つかりませんでした。</h5>
         <% end %>
       </div>
     </div>
@@ -23,7 +23,7 @@
     <% if @posts.any? %>
       <%= render 'public/posts/index' %>
     <% else %>
-      <p>該当する投稿が見つかりませんでした。</p>
+      <h5 class="pt-5 text-center">該当する投稿が見つかりませんでした。</h5>
     <% end %>
     
   <% end %>

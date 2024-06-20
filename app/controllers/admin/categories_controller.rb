@@ -11,8 +11,7 @@ class Admin::CategoriesController < ApplicationController
     if @category.save
       redirect_to admin_categories_path, notice: 'カテゴリを登録しました'
     else
-      @categories = Category.all
-      render :index
+      redirect_to admin_categories_path, alert: 'カテゴリの作成に失敗しました'
     end
   end
   
@@ -30,7 +29,7 @@ class Admin::CategoriesController < ApplicationController
     if @category.update(category_params)
       redirect_to admin_categories_path, notice: 'カテゴリを更新しました'
     else
-      render :edit
+      redirect_to edit_admin_category_path, alert: 'カテゴリの更新に失敗しました'
     end
   end
 

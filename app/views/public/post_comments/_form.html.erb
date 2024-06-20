@@ -1,5 +1,5 @@
   <%= form_with(model: [@post, PostComment.new], local: true) do |f|  %>
-    <div class="mb-2">
+    <div class="mb-3">
       <%= f.label :body, "コメントを入力" %>
       <%= f.text_area :body, class:"form-control" %>
     </div>
