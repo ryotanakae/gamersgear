@@ -13,7 +13,8 @@ class User < ApplicationRecord
   #  フォローしている人の取得
   has_many :following, through: :active_relationships, source: :followed
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { in: 1..10 }
+  validates :introduction, length: { maximum: 50 }
 
   has_one_attached :image
 
@@ -53,6 +54,7 @@ class User < ApplicationRecord
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲストユーザー"
+      user.introduction = "ゲストユーザーです"
     end
   end
 

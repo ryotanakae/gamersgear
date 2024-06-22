@@ -1,11 +1,11 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show], unless: :admin_signed_in?
   before_action :set_categories
-  
+
   def new
     @post = Post.new
   end
-  
+
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -39,7 +39,7 @@ class Public::PostsController < ApplicationController
     when 'most_commented'
        @posts = @posts.left_joins(:post_comments).group(:id).order('COUNT(post_comments.id) DESC') # コメントの多い順
     end
-    
+
   end
 
   def show
@@ -51,7 +51,7 @@ class Public::PostsController < ApplicationController
     @user = current_user
     @post = Post.find(params[:id])
   end
-  
+
   def update
     @user = current_user
     @post = Post.find(params[:id])
@@ -62,22 +62,22 @@ class Public::PostsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @user = current_user
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to root_path, notice: '投稿を削除しました'
   end
-  
+
   private
-  
+
   def post_params
-    params.require(:post).permit(:title, :body, :star, :category_id, :image)
+    params.require(:post).permit(:title, :body, :star, :category_id, :image,)
   end
-  
+
   def set_categories
     @categories = Category.all
   end
-  
+
 end

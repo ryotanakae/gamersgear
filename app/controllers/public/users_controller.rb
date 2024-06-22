@@ -33,7 +33,7 @@ class Public::UsersController < ApplicationController
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to new_user_registration_path
   end
-  
+
   def likes
     @user = User.find(params[:id])
     @liked_posts = @user.liked_posts
@@ -42,14 +42,14 @@ class Public::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :is_active, :image)
+    params.require(:user).permit(:name, :email, :is_active, :image, :introduction)
   end
-  
+
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.email == "guest@example.com"
       redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
-  end  
+  end
 
 end

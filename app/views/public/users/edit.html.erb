@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='row'>
-    <div class="col-3 px-5 px-sm-0 mx-auto">
+    <div class="col-4 px-5 px-sm-0 mx-auto">
 
     <h4 class="mt-4">プロフィールを編集</h4>
 
@@ -8,10 +8,15 @@
 
       <div class="mt-4">
         <%= f.label :name, "ニックネーム" %>
-        <%= f.text_field :name, class: "form-control name" %>
+        <%= f.text_field :name, placeholder:"name", class: "form-control name" %>
+      </div>
+      
+      <div class="mt-3">
+        <%= f.label :introduction, "自己紹介" %>
+        <%= f.text_area :introduction, rows:"5", placeholder:"introduction", class: "form-control" %>
       </div>
 
-     <div class="mt-3">
+      <div class="mt-3">
         <%= f.label :image, "プロフィール画像" %>
         <%= f.file_field :image, class: "form-control-file user_image", accept: 'image/*' %>
       </div>

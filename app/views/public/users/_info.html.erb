@@ -26,6 +26,10 @@
     <tr>
       <th><%= link_to "いいね", likes_user_path(@user) %></th>
     </tr>
+    
+    <tr id="intro">
+      <th colspan="2"><%= @user.introduction %></th>
+    </tr>
 
   </table>
 
@@ -37,7 +41,9 @@
           <i class="fas fa-user-cog"></i> プロフィールを編集
         <% end %>
       <% else %>
-        <td><%= render 'public/relationships/btn', user: @user %></td>
+        <div id="relationships_btn_<%= @user.id %>">
+          <%= render 'public/relationships/btn', user: @user %>
+        </div>
       <% end %>
     <% end %>
   </div>

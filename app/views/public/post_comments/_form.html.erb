@@ -1,7 +1,7 @@
-  <%= form_with(model: [@post, PostComment.new], local: true) do |f|  %>
+  <%= form_with(model: [@post, PostComment.new], local: false) do |f|  %>
     <div class="mb-3">
       <%= f.label :body, "コメントを入力" %>
-      <%= f.text_area :body, class:"form-control" %>
+      <%= f.text_area :body, rows:'3', placeholder: "コメントをここに", class:"form-control" %>
     </div>
     <%= f.submit "投稿する", class: "btn btn-secondary"%>
   <% end %>

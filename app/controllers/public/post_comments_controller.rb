@@ -6,7 +6,7 @@ class Public::PostCommentsController < ApplicationController
     @comment = current_user.post_comments.new(post_comment_params)
     @comment.post_id = @post.id
     if @comment.save
-      redirect_to post_path(@post), notice: 'コメントを投稿しました'
+      # redirect_to post_path(@post), notice: 'コメントを投稿しました'
     else
       @comments = @post.post_comments.includes(:user)
       flash.now[:alert] = @comment.errors.full_messages.join(", ")
@@ -20,7 +20,7 @@ class Public::PostCommentsController < ApplicationController
     # コメントしたユーザー、管理者、レビュー投稿者がコメントを削除できる記述
     if @comment.user == current_user || admin_signed_in? || @post.user == current_user
       @comment.destroy
-      redirect_to request.referer, notice: 'コメントを削除しました'
+      # redirect_to request.referer, notice: 'コメントを削除しました'
     else
       redirect_to request.referer, alert: 'コメントの削除に失敗しました'
     end
