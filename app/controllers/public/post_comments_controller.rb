@@ -8,9 +8,8 @@ class Public::PostCommentsController < ApplicationController
     if @comment.save
       # redirect_to post_path(@post), notice: 'コメントを投稿しました'
     else
-      @comments = @post.post_comments.includes(:user)
-      flash.now[:alert] = @comment.errors.full_messages.join(", ")
-      redirect_to post_path(@post), alert: 'コメントの投稿に失敗しました'
+      flash[:alert] = @comment.errors.full_messages.join(", ")
+      redirect_to post_path(@post)
     end
   end
   

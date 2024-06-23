@@ -22,9 +22,9 @@ class Public::PostsController < ApplicationController
   def index
     if params[:category_id]
       @category = Category.find(params[:category_id])
-      @posts = @category.posts
+      @posts = @category.posts.page(params[:page]).per(7)
     else
-      @posts = Post.all
+      @posts = Post.all.page(params[:page]).per(7)
     end
     # ソート機能のロジック desc=降順 asc=昇順
     case params[:sort]

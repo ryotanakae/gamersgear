@@ -9,7 +9,7 @@ class Admin::SearchesController < ApplicationController
     when "User"
       @users = User.looks(params[:search], params[:word])
     when "Post"
-      @posts = Post.looks(params[:search], params[:word])
+      @posts = Post.looks(params[:search], params[:word]).page(params[:page]).per(7)
     when "PostComment"
       @post_comments = PostComment.joins(:post, :user).where('post_comments.body LIKE ? OR posts.title LIKE ? OR users.name LIKE ?', "%#{@word}%", "%#{@word}%", "%#{@word}%")
     end

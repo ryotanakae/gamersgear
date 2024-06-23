@@ -1,21 +1,13 @@
 <div class="mt-5">
   
-  <table class="table table-borderless">
+  <div class="mb-3 text-center">
+    <strong>カテゴリ一覧</strong>
+  </div>
     
-    <tr class="text-center">
-      <th>
-        カテゴリ一覧
-      </th>
-    </tr>
+  <% @categories.each do |category| %>
+    <div class="py-2">
+      <%= link_to category.name, posts_path(category_id: category.id) %>
+    </div>
+  <% end %>
     
-    <% @categories.each do |category| %>
-      <tr>
-        <th>
-          <%= link_to category.name, posts_path(category_id: category.id) %>
-        </th>
-      </tr>
-    <% end %>
-    
-  </table>
-  
 </div>

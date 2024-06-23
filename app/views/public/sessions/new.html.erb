@@ -11,12 +11,12 @@
       <%= form_with model: @user, url: user_session_path do |f| %>
 
         <div class="field mb-1">
-          <%= f.label :email, "メールアドレス" %><br />
+          <%= f.label :email, "メールアドレス" %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
         </div>
 
         <div class="field mb-2">
-          <%= f.label :password, "パスワード" %><br />
+          <%= f.label :password, "パスワード" %>
           <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
         </div>
 

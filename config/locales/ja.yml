@@ -1,0 +1,70 @@
+ja:
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "&hellip;"
+
+  activerecord:
+    models:
+      post: "投稿"
+    attributes:
+      post:
+        category: "カテゴリ"
+        category_id: "カテゴリ"
+        title: "タイトル"
+        body: "本文"
+        star: "評価"
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
+      post_comment:
+        body: "コメント"
+    errors:
+      messages:
+        blank: "を入力してください"
+        required: "は必須です"
+        not_a_number: "は数値で入力してください"
+        taken: "はすでに存在します"
+
+  errors:
+    messages:
+      invalid: "無効な値です"
+      accepted: "を確認してください"
+      empty: "を入力してください"
+      blank: "を入力してください"
+      present: "を入力しないでください"
+      too_long:
+        one: "%{count}文字以内で入力してください"
+        other: "%{count}文字以内で入力してください"
+      too_short:
+        one: "%{count}文字以上で入力してください"
+        other: "%{count}文字以上で入力してください"
+      wrong_length:
+        one: "%{count}文字で入力してください"
+        other: "%{count}文字で入力してください"
+      not_a_number: "数値で入力してください"
+
+  devise:
+    registrations:
+      user:
+        signed_up: 'アカウントが作成されました。'
+    sessions:
+      user:
+        signed_in: 'ログインしました。'
+        signed_out: 'ログアウトしました。'
+      admin:
+        signed_in: '管理者としてログインしました。'
+        signed_out: '管理者としてログアウトしました。'
+    failure:
+      user:
+        invalid: '無効なメールアドレスまたはパスワードです。'
+        not_found_in_database: 'メールアドレスまたはパスワードが間違っています。'
+      admin:
+        invalid: '無効なメールアドレスまたはパスワードです。'
+        not_found_in_database: 'メールアドレスまたはパスワードが間違っています。'
+      unauthenticated: 'ログインが必要です。'

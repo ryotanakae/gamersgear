@@ -1,49 +1,47 @@
-<%= form_with url: posts_path, method: :get, local: true do %>
-  <div class="col-12 my-3 d-flex justify-content-end">
-    <%= select_tag :sort, options_for_select([
-      ['新着順', 'newest'], 
-      ['古い順', 'oldest'], 
-      ['評価の高い順', 'highest_rated'], 
-      ['いいねの多い順', 'most_liked'],
-      ['コメントの多い順', 'most_commented']
-    ], params[:sort]) %>
-    <%= submit_tag '並び替える' %>
+<%= render 'public/posts/sort' %>
+
+<% if @posts.present? %>
+  <% @posts.each do |post| %>
+    <div class="row m-2 border-bottom">
+      <div class="col-3 mb-2 pl-0">
+  
+        <%= link_to post_path(post.id) do %>
+          <%= image_tag post.get_image, size:'180x130' %>
+        <% end %>
+  
+        <div>
+          <%= render 'public/posts/star', post: post %>
+        </div>
+  
+      </div>
+  
+      <div class="col-9 d-flex flex-column">
+  
+        <div class="my-2">
+          <%= link_to post.title, post_path(post) %>
+        </div>
+  
+        <div class="flex-grow-1">
+          <%= truncate(post.body, length: 100) %> <!-- 100文字まで表示する -->
+        </div>
+  
+        <div class="d-flex justify-content-end">
+          <span class="mr-3">投稿者:<%= link_to post.user.name, user_path(post.user) %></span>
+          <span class="mr-3"><%= post.created_at.strftime('%Y-%m-%d') %></span>
+          <span class="mr-3">コメント<%= post.post_comments.count %>件</span>
+          <span id="like_btn_<%= post.id %>"><%= render 'public/likes/btn', post: post %></span>
+        </div>
+  
+      </div>
+    </div>
+  <% end %>
+  
+  <div class="d-flex justify-content-center my-4">
+    <%= paginate @posts %>
   </div>
-<% end %>
 
-<% @posts.each do |post| %>
-  <div class="row m-2 border-bottom">
-
-    <div class="col-3 mb-2 pl-0">
-
-      <%= link_to post_path(post.id) do %>
-        <%= image_tag post.get_image, size:'180x130' %>
-      <% end %>
-
-      <div>
-        <%= render 'public/posts/star', post: post %>
-      </div>
-
-    </div>
-
-    <div class="col-9 d-flex flex-column">
-
-      <div class="my-2">
-        <%= link_to post.title, post_path(post) %>
-      </div>
-
-      <div class="flex-grow-1">
-        <%= truncate(post.body, length: 100) %> <!-- 100文字まで表示する -->
-      </div>
-
-      <div class="d-flex justify-content-end">
-        <span class="mr-3">投稿者:<%= link_to post.user.name, user_path(post.user) %></span>
-        <span class="mr-3"><%= post.created_at.strftime('%Y-%m-%d') %></span>
-        <span class="mr-3">コメント<%= post.post_comments.count %>件</span>
-        <span id="like_btn_<%= post.id %>"><%= render 'public/likes/btn', post: post %></span>
-      </div>
-
-    </div>
-
+<% else %>
+  <div class="d-flex justify-content-center my-4">
+    <p class="pt-5">投稿がありません。</p>
   </div>
 <% end %>

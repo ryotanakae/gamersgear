@@ -13,7 +13,7 @@ class User < ApplicationRecord
   #  フォローしている人の取得
   has_many :following, through: :active_relationships, source: :followed
 
-  validates :name, presence: true, length: { in: 1..10 }
+  validates :name, presence: true, length: { in: 1..7 }
   validates :introduction, length: { maximum: 50 }
 
   has_one_attached :image

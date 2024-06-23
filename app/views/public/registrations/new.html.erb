@@ -9,15 +9,14 @@
   <div class="row d-flex justify-content-center">
     <div class="col-sm-4">
       <%= form_with model: @user, url: user_registration_path do |f| %>
-        <%= render "public/shared/error_messages", resource: @user %>
         
         <div class="field mb-1">
-          <%= f.label :name, "ユーザー名" %><br />
+          <%= f.label :name, "ユーザー名" %>
           <%= f.text_field :name, class: "form-control" %>
         </div>
       
         <div class="field mb-1">
-          <%= f.label :email, "メールアドレス" %><br />
+          <%= f.label :email, "メールアドレス" %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
         </div>
       
@@ -25,12 +24,12 @@
           <%= f.label :password, "パスワード" %>
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> 文字以上)</em>
-          <% end %><br />
+          <% end %>
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
         </div>
       
         <div class="field">
-          <%= f.label :password_confirmation, "パスワード（確認）" %><br />
+          <%= f.label :password_confirmation, "パスワード（確認）" %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
         </div>
       
