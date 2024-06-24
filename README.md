@@ -24,9 +24,9 @@
 
 ## 設計書
 
-![UI Flows(ユーザー)](images/UIFlows_public.jpg)
-![UI Flows(管理者)](images/UIFlows_admin.jpg)
-![ER図](images/ER.jpg)
+![UI Flows(ユーザー)](UIFlows_public.jpg)
+![UI Flows(管理者)](UIFlows_admin.jpg)
+![ER図](ER.jpg)
 
 ## 開発環境
 - OS:Linux
