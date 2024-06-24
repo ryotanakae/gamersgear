@@ -40,7 +40,10 @@
   <% elsif @range == "Post" %>
   
     <% if @posts.any? %>
-      <%= render 'public/posts/index' %>      
+      <%= render 'public/posts/sort' %>
+      <div id="posts-list">
+        <%= render 'public/posts/index' %>
+      </div>    
     <% else %>
       <h5 class="pt-5 text-center">該当する投稿が見つかりませんでした。</h5>
     <% end %>

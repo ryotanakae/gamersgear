@@ -23,7 +23,10 @@
 - 購入前の疑問や悩みを解消したい時
 
 ## 設計書
-後ほど作成予定
+
+![UI Flows(ユーザー)](images/UIFlows_public.jpg)
+![UI Flows(管理者)](images/UIFlows_admin.jpg)
+![ER図](images/ER.jpg)
 
 ## 開発環境
 - OS:Linux
