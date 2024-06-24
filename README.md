@@ -24,9 +24,16 @@
 
 ## 設計書
 
-![UI Flows(ユーザー)](UIFlows_public.jpg)
-![UI Flows(管理者)](UIFlows_admin.jpg)
-![ER図](ER.jpg)
+- UI Flows(ユーザー)
+![UIFlows_public](https://github.com/ryotanakae/gamersgear/assets/164773418/890cd5b2-6cf3-4032-ad89-c92f88c0bb07)
+- UI Flows(管理者)
+![UIFlows_admin](https://github.com/ryotanakae/gamersgear/assets/164773418/63b5774a-c905-4d5c-bfa1-0e59321afae0)
+- ER図
+![ER](https://github.com/ryotanakae/gamersgear/assets/164773418/473342a6-e5e2-438a-9f94-a08ce8806607)
+- テーブル定義書
+  - https://docs.google.com/spreadsheets/d/186otx-xfNDRmGRqL2yaV2pVDa758VWpT9XEIJ2DkFGw/edit?usp=sharing
+- アプリケーション詳細設計書
+  - https://docs.google.com/spreadsheets/d/1Ran29HI1nknlhUcZ5Db8NsdbaNa94p63sCTJDQOGiKo/edit?usp=sharing
 
 ## 開発環境
 - OS:Linux
