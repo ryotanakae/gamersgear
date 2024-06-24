@@ -1,8 +1,8 @@
 <div class="container">
   
   <div class="row">
-    <div class="col-8 offset-4 my-3">
-      <h3>検索結果</h3>
+    <div class="col-12 text-center mb-3">
+      <h4>検索結果</h4>
     </div>
   </div>
   
@@ -22,8 +22,16 @@
                       <%= image_tag user.get_image, class: "rounded-circle", size: "50x50" %>
                     </div>
           
-                    <div>
+                    <div class="col-2 pr-0">
                       <span><%= link_to user.name, user_path(user) %></span>
+                    </div>
+                    
+                    <div class="ml-3">
+                      <%= truncate(user.introduction, length: 30) %>
+                    </div>
+                    
+                    <div class="ml-auto">
+                      <%= link_to '編集する', edit_admin_user_path(user), class: 'btn btn-sm btn-outline-secondary' %>
                     </div>
 
                   </div>
