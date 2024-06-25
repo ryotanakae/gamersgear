@@ -27,18 +27,7 @@ class Public::PostsController < ApplicationController
       @posts = Post.all.page(params[:page]).per(7)
     end
     # ソート機能のロジック desc=降順 asc=昇順
-    case params[:sort]
-    when 'newest'
-      @posts = @posts.order(created_at: :desc) # 新着順
-    when 'oldest'
-      @posts = @posts.order(created_at: :asc) # 古い順
-    when 'highest_rated'
-      @posts = @posts.order(star: :desc) # 評価の高い順
-    when 'most_liked'
-      @posts = @posts.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC') # いいねの多い順
-    when 'most_commented'
-       @posts = @posts.left_joins(:post_comments).group(:id).order('COUNT(post_comments.id) DESC') # コメントの多い順
-    end
+    @posts = sort_posts(@posts)
 
   end
 
@@ -79,5 +68,23 @@ class Public::PostsController < ApplicationController
   def set_categories
     @categories = Category.all
   end
-
+  
+  def sort_posts(posts)
+    case params[:sort]
+    when 'newest'
+      posts = posts.order(created_at: :desc)
+    when 'oldest'
+      posts = posts.order(created_at: :asc)
+    when 'highest_rated'
+      posts = posts.order(star: :desc)
+    when 'most_liked'
+      posts = posts.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC')
+    when 'most_commented'
+      posts = posts.left_joins(:post_comments).group(:id).order('COUNT(post_comments.id) DESC')
+    else
+      posts
+    end
+    posts.page(params[:page]).per(7)
+  end
+  
 end

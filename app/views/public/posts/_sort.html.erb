@@ -1,12 +1,16 @@
-<%= form_with url: posts_path, method: :get, local: true do %>
-  <div class="col-12 my-3 d-flex justify-content-end">
-    <%= select_tag :sort, options_for_select([
-      ['新着順', 'newest'], 
-      ['古い順', 'oldest'], 
-      ['評価の高い順', 'highest_rated'], 
-      ['いいねの多い順', 'most_liked'],
-      ['コメントの多い順', 'most_commented']
-    ], params[:sort]) %>
-    <%= submit_tag '並び替える' %>
-  </div>
-<% end %>
+<select id="sort_dropdown" onchange="sortPosts()">
+  <option value="newest" <%= 'selected' if params[:sort] == 'newest' %>>新着順</option>
+  <option value="oldest" <%= 'selected' if params[:sort] == 'oldest' %>>古い順</option>
+  <option value="highest_rated" <%= 'selected' if params[:sort] == 'highest_rated' %>>評価の高い順</option>
+  <option value="most_liked" <%= 'selected' if params[:sort] == 'most_liked' %>>いいねの多い順</option>
+  <option value="most_commented" <%= 'selected' if params[:sort] == 'most_commented' %>>コメントの多い順</option>
+</select>
+
+<script>
+  function sortPosts() {
+    var sortValue = document.getElementById('sort_dropdown').value;
+    var url = new URL(window.location.href);
+    url.searchParams.set('sort', sortValue);
+    window.location.href = url.toString();
+  }
+</script>
