@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     patch 'users/information', to: 'users#update'
     get 'users/:id/confirmation', to: 'users#confirm', as: 'confirm_user'
     patch 'users/:id/withdraw', to: 'users#withdraw', as: 'user_withdraw'
+    get '/privacy_policy', to: 'homes#privacy_policy'
+    get '/terms', to: 'homes#terms'
 
     resources :posts do
       resources :post_comments, only: [:create, :destroy], path: 'comments' # URLをpost_commentsからcommentsに変更する

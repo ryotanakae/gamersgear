@@ -7,7 +7,8 @@ class Public::HomesController < ApplicationController
     @posts = sort_posts(@posts)
     
   end
-
+  
+ 
   private
   
   # ソート機能のロジック
