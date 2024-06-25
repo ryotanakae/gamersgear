@@ -48,7 +48,6 @@
   <% elsif @range == "Post" %>
   
     <% if @posts.any? %>
-      <%= render 'public/posts/sort' %>
       <div id="posts-list">
         <%= render 'public/posts/index' %>
       </div>    
