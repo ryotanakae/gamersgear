@@ -21,9 +21,10 @@
         <%= f.file_field :image, class: "form-control-file user_image", accept: 'image/*' %>
       </div>
 
-      <div class="mt-4">
+      <div class="mt-4 d-flex">
         <%= f.submit "保存", class: 'btn btn-secondary' %>
-        <%= link_to "退会する", confirm_user_path(@user), class: "btn btn-danger ml-5" %>
+        <%= link_to "戻る", user_path(@user), class: "btn btn-secondary ml-3"%>
+        <%= link_to "退会する", confirm_user_path(@user), class: "btn btn-danger ml-auto" %>
       </div>
 
     <% end %>

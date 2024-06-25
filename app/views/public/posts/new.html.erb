@@ -62,10 +62,11 @@
         </script>
       </div>
       
-      <div class="mb-4">
+      <div class="mb-4 d-flex">
         <% unless current_user&.guest_user? %>
         <%= f.submit "投稿する", class:"btn btn-secondary" %>
         <% end %>
+        <%= link_to "戻る", root_path, class: "btn btn-secondary ml-auto" %>
       </div>
 
     <% end %>
