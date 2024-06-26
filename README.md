@@ -25,9 +25,9 @@
 ## 設計書
 
 - UI Flows(ユーザー)
-![UIFlows_public](https://github.com/ryotanakae/gamersgear/assets/164773418/890cd5b2-6cf3-4032-ad89-c92f88c0bb07)
+![image](https://github.com/ryotanakae/gamersgear/assets/164773418/8c6bc9a0-fb74-4d7c-b114-7315b513bd8b)
 - UI Flows(管理者)
-![UIFlows_admin](https://github.com/ryotanakae/gamersgear/assets/164773418/63b5774a-c905-4d5c-bfa1-0e59321afae0)
+![image](https://github.com/ryotanakae/gamersgear/assets/164773418/992936dc-3b63-4a36-a0cd-91540475c1ef)
 - ER図
 ![ER](https://github.com/ryotanakae/gamersgear/assets/164773418/473342a6-e5e2-438a-9f94-a08ce8806607)
 - テーブル定義書
