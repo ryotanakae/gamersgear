@@ -43,6 +43,7 @@
           <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
           <div id="post_raty"></div>
         </div>
+        <!--ratyの星評価機能-->
         <script>
           $(document).on('turbolinks:load', function() {
             let elem = document.querySelector('#post_raty');
@@ -64,6 +65,7 @@
       
       <div class="mb-4 d-flex">
         <% unless current_user&.guest_user? %>
+        <!--ログインしているのがゲストでない場合は投稿ボタンを表示-->
         <%= f.submit "投稿する", class:"btn btn-secondary" %>
         <% end %>
         <%= link_to "戻る", root_path, class: "btn btn-secondary ml-auto" %>

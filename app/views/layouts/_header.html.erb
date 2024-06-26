@@ -16,7 +16,7 @@
           <ul class="navbar-nav">
 
             <% if user_signed_in? %>
-              <!--ユーザーでログインしている時-->
+            <!--ユーザーでログインしている時-->
               <li class="nav-item">
                 <%= link_to user_path(current_user), class: 'nav-link text-white' do %>
                   マイページへ
@@ -36,7 +36,7 @@
               </li>
 
             <% elsif admin_signed_in? %>
-              <!--管理者でログインしている時-->
+            <!--管理者でログインしている時-->
               <li class="nav-item">
                 <%= link_to admin_root_path, class: 'nav-link text-white' do %>
                   会員一覧
@@ -62,7 +62,7 @@
               </li>
 
             <% else %>
-              <!--ログインしていない時-->
+            <!--ログインしていない時-->
               <li class="nav-item">
                 <%= link_to about_path, class: 'nav-link text-white' do %>
                   このサイトについて

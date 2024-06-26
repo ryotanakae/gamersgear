@@ -1,5 +1,7 @@
 <% if current_user.following?(user) %>
+<!--現在のユーザーが対象ユーザーをフォローしている場合-->
   <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, remote: true, class: "btn btn-sm btn-outline-secondary" %>
 <% else %>
+<!--フォローしていない場合-->
   <%= link_to "フォローする", user_relationships_path(user.id), method: :post, remote: true, class: "btn btn-sm btn-outline-secondary" %>
  <% end %>

@@ -21,9 +21,11 @@ class Public::PostsController < ApplicationController
 
   def index
     if params[:category_id]
+      # カテゴリが指定されている場合はそのカテゴリの投稿を取得
       @category = Category.find(params[:category_id])
       @posts = @category.posts.page(params[:page]).per(7)
     else
+      # すべての投稿を取得
       @posts = Post.all.page(params[:page]).per(7)
     end
     @posts = sort_posts(@posts)
@@ -68,20 +70,26 @@ class Public::PostsController < ApplicationController
     @categories = Category.all
   end
   
-  # ソート機能のロジック
+  # ソート機能
   def sort_posts(posts)
     case params[:sort]
     when 'newest'
+      # 新着順
       posts = posts.order(created_at: :desc)
     when 'oldest'
+      # 古い順
       posts = posts.order(created_at: :asc)
     when 'highest_rated'
+      # 評価の高い順
       posts = posts.order(star: :desc)
     when 'most_liked'
+      # いいねの多い順
       posts = posts.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC')
     when 'most_commented'
+      # コメントの多い順
       posts = posts.left_joins(:post_comments).group(:id).order('COUNT(post_comments.id) DESC')
     else
+      # デフォルトはソートなし
       posts
     end
     posts.page(params[:page]).per(7)

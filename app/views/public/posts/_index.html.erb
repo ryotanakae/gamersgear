@@ -3,6 +3,7 @@
 </div>
 
 <% if @posts.present? %>
+<!--投稿が存在する場合-->
   <% @posts.each do |post| %>
     <div class="row m-2 border-bottom">
       <div class="col-3 mb-2 pl-0">
@@ -43,6 +44,7 @@
   </div>
 
 <% else %>
+<!--投稿が存在しない場合-->
   <div class="d-flex justify-content-center my-4">
     <p class="pt-5">投稿がありません。</p>
   </div>

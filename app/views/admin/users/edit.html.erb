@@ -32,12 +32,12 @@
 
           <div class="mt-3">
             <%= f.label :is_active, "会員ステータス", class: "pb-2" %>
+            <!--ユーザーの会員ステータスをラジオボタンで選択-->
             <div class="d-flex">
               <div>
                 <%= f.radio_button :is_active, true %>
                 <%= f.label :is_active_true, "有効", class: "pl-1" %>
               </div>
-
               <div class="ml-4">
                 <%= f.radio_button :is_active, false %>
                 <%= f.label :is_active_false, "退会", class: "pl-1"  %>

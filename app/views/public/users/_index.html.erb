@@ -22,7 +22,9 @@
 
           <div class="ml-auto">
             <% if current_user %>
+            <!--現在のユーザーが存在する場合-->
               <% unless user.guest_user? || current_user.guest_user? %>
+              <!-- 相手または自分がゲストユーザーでない場合（相手または自分がゲストの場合は空白） -->
                 <% if current_user == user %>
                 <!--自分にはフォロー/フォロー解除ボタンが表示されない-->
                 <% else %>

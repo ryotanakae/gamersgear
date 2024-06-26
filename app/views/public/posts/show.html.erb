@@ -28,6 +28,7 @@
             <th></th>
             <th>
               <% if @post.user == current_user || admin_signed_in? %>
+              <!--投稿したユーザーまたは管理者のみに表示-->
                 <%= link_to '編集する', edit_post_path(@post), class: "btn btn-secondary" %>
               <% end %>
             </th>
@@ -48,6 +49,7 @@
 
     <div id="comment_form" class="my-3">
       <% if user_signed_in? && !current_user.guest_user? %>
+      <!--ログインユーザーかつゲストでない場合に表示（コメントフォーム）-->
         <%= render 'public/post_comments/form', post: @post %>
       <% end %>
     </div>

@@ -6,7 +6,6 @@ class Public::PostCommentsController < ApplicationController
     @comment = current_user.post_comments.new(post_comment_params)
     @comment.post_id = @post.id
     if @comment.save
-      # redirect_to post_path(@post), notice: 'コメントを投稿しました'
     else
       flash[:alert] = @comment.errors.full_messages.join(", ")
       redirect_to post_path(@post)
@@ -16,10 +15,9 @@ class Public::PostCommentsController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     @comment = PostComment.find(params[:id])
-    # コメントしたユーザー、管理者、レビュー投稿者がコメントを削除できる記述
+    # コメントしたユーザー、管理者、レビュー投稿者がコメントを削除できる
     if @comment.user == current_user || admin_signed_in? || @post.user == current_user
       @comment.destroy
-      # redirect_to request.referer, notice: 'コメントを削除しました'
     else
       redirect_to request.referer, alert: 'コメントの削除に失敗しました'
     end

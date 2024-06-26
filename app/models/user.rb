@@ -37,13 +37,17 @@ class User < ApplicationRecord
     following.include?(user)
   end
 
+  # 検索機能
   def self.looks(search, word)
     if search == "perfect_match"
+      # 完全一致
       where("name LIKE ?", word).where(is_active: true)
     elsif search == "partial_match"
+      # 部分一致
       where("name LIKE ?", "%#{word}%").where(is_active: true)
     else
-      where("name LIKE ?", "%#{word}%").where(is_active: true)  # デフォルトは部分一致
+      # デフォルトは部分一致
+      where("name LIKE ?", "%#{word}%").where(is_active: true)
     end
   end
 
@@ -70,6 +74,7 @@ class User < ApplicationRecord
   private
 
   # is_activeがfalseになる場合に呼ばれるメソッド
+  # ステータスを退会済みにするだけでは関連データが削除されない為に必要
   def deactivate_user
     posts.destroy_all
     post_comments.destroy_all
@@ -78,7 +83,8 @@ class User < ApplicationRecord
     active_relationships.destroy_all
   end
 
-  # is_activeがfalseに変更されるかどうかをチェックするメソッド
+  # is_activeがfalseに変更されたかどうかをチェックするメソッド
+  # ステータスが退会済みであるかどうかを
   def deactivating?
     is_active_changed? && !is_active
   end

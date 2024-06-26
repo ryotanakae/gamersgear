@@ -1,3 +1,4 @@
+<!--ドロップダウンでのソート機能-->
 <select id="sort_dropdown" onchange="sortPosts()">
   <option value="newest" <%= 'selected' if params[:sort] == 'newest' %>>新着順</option>
   <option value="oldest" <%= 'selected' if params[:sort] == 'oldest' %>>古い順</option>
@@ -6,6 +7,8 @@
   <option value="most_commented" <%= 'selected' if params[:sort] == 'most_commented' %>>コメントの多い順</option>
 </select>
 
+<!--ソートオプションが変更されたときに呼び出される-->
+<!--選択されたオプションに基づいてURLを更新してページの再読み込みをする-->
 <script>
   function sortPosts() {
     var sortValue = document.getElementById('sort_dropdown').value;

@@ -1,17 +1,19 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-8 offset-4 my-3">
+    <div class="col-12 text-center my-3">
       <h4>フォロワー</h4>
     </div>
   </div>
-      
+
   <div class="row d-flex justify-content-center min-vh-100">
-    <div class="col-9 px-0 border-right border-left min-vh-100">
+    <div class="col-9 px-0 min-vh-100">
       <% if @users.exists? %>
+      <!--フォロワーがいる場合-->
         <%= render 'public/users/index', users: @users %>
       <% else %>
-        <p>現在フォローされているユーザーはいません</p>
+      <!--フォロワーがいない場合-->
+        <p class="pt-5 text-center">現在フォローされているユーザーはいません</p>
       <% end %>
     </div>
   </div>

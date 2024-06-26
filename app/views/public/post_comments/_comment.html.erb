@@ -14,7 +14,7 @@
       </div>
     </div>
     
-    <!--削除ボタンの表示をコメント投稿者、レビュー投稿者、管理者のみに制限する記述-->
+    <!--削除ボタンの表示をコメント投稿者、レビュー投稿者（自分の投稿についているコメントを消せる）、管理者（コメント管理）のみに制限する-->
     <% if comment.user == current_user || admin_signed_in? || post.user == current_user %>
       <div class="d-flex align-self-end">
         <%= link_to '削除', post_post_comment_path(post, comment), method: :delete, remote: true, data: { confirm: '本当に削除しますか？' } %>

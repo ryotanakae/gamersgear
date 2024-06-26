@@ -21,14 +21,18 @@ users = [
   { email: "hebi@hebi", name: "ヘビ", password: "000000", introduction: "ヘビです　ゲームが好きです", image_path: "#{Rails.root}/db/fixtures/hebi.png", filename: "hebi.jpg" }
 ]
 
+# 画像は後から付与する
 users.each do |user_data|
+  # find_or_create_by!メソッドで指定されたメールアドレスでユーザーを検索し、存在しない場合は新規作成
   user = User.find_or_create_by!(email: user_data[:email]) do |user|
     user.name = user_data[:name]
     user.password = user_data[:password]
     user.introduction = user_data[:introduction]
   end
 
+  # ユーザーに画像が添付されていない場合
   unless user.image.attached?
+    # ユーザーに画像を添付する
     user.image.attach(io: File.open(user_data[:image_path]), filename: user_data[:filename])
   end
 end
@@ -60,16 +64,21 @@ posts = [
 ]
 
 posts.each do |post_data|
+  # ユーザーとカテゴリをメールアドレスとカテゴリ名で検索
   user = User.find_by(email: post_data[:user_email])
   category = Category.find_by(name: post_data[:category_name])
-
+  
+  # ユーザーとカテゴリが存在する場合に実行
   if user && category
+    # タイトル、ユーザー、カテゴリーに基づいて投稿を検索し、存在しない場合は新規作成
     post = Post.find_or_create_by!(title: post_data[:title], user: user, category: category) do |post|
       post.body = post_data[:body]
       post.star = post_data[:star]
     end
 
+    # 投稿に画像が添付されていない場合
     unless post.image.attached?
+      # 投稿に画像を添付する
       post.image.attach(io: File.open(post_data[:image_path]), filename: File.basename(post_data[:image_path]))
     end
   end

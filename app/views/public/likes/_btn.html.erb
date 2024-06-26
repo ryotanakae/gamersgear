@@ -1,17 +1,22 @@
 <% if current_user && !current_user.guest_user? %>
+<!--ログインユーザーでありゲストユーザーでない場合-->
 
   <% if post.likes_by?(current_user) %>
+  <!--ログインユーザーがいいねをしている場合-->
     <%= link_to post_like_path(post, current_user.likes.find_by(post_id: post.id)), method: :delete, remote: true do %>
       <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i><%= post.likes.count %>
     <% end %>
+    
   <% else %>
+  <!--ログインユーザーがいい値をしていない場合-->
     <%= link_to post_like_path(post), method: :post, remote: true do %>
       <i class="fas fa-heart" aria-hidden="true"></i><%= post.likes.count %>
     <% end %>
+    
   <% end %>
   
 <% else %>
-
+<!--ログインしていない、またはゲストユーザーの場合-->
   <span>
     <i class="fa-regular fa-heart" aria-hidden="true"></i></i><%= post.likes.count %>
   </span>

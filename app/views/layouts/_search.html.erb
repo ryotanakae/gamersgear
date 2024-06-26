@@ -1,3 +1,4 @@
+<!--検索機能-->
 <div class="ml-5 search-form">
   <%= form_with url: (admin_signed_in? ? admin_search_path : search_path), local: true, method: :get, class: 'form-inline' do |f| %>
     <%= f.select :range, options_for_select([['ユーザー', 'User'], ['レビュー', 'Post'], (admin_signed_in? ? ['コメント', 'PostComment'] : nil)].compact), class: 'form-control　searchform' %>
