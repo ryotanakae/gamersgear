@@ -30,7 +30,6 @@ ja:
         required: "は必須です"
         not_a_number: "は数値で入力してください"
         taken: "はすでに存在します"
-        record_invalid: "バリデーションに失敗しました: %{errors}"
 
   errors:
     messages:
