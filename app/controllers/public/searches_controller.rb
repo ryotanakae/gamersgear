@@ -9,7 +9,11 @@ class Public::SearchesController < ApplicationController
       @users = User.looks(params[:search], params[:word])
     else
       # 投稿検索
-      @posts = Post.looks(params[:search], params[:word]).page(params[:page]).per(7)
+      @posts = Post.joins(:user, :category)
+                   .where('posts.title LIKE ? OR posts.body LIKE ? OR users.name LIKE ? OR categories.name LIKE ?', "%#{@word}%", "%#{@word}%", "%#{@word}%", "%#{@word}%")
+                   .page(params[:page])
+                   .per(7)
+                  # 検索結果のソート
       @posts = sort_posts(@posts)
     end
   end
