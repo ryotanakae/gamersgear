@@ -24,7 +24,7 @@
           
           <tr>
             <th><%= render 'public/posts/star', post: @post %></th>
-            <th></th>
+            <th><%= l(@post.created_at, format: :default) %></th>
             <th></th>
             <th>
               <% if @post.user == current_user || admin_signed_in? %>

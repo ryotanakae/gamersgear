@@ -68,3 +68,15 @@ ja:
         invalid: '無効なメールアドレスまたはパスワードです。'
         not_found_in_database: 'メールアドレスまたはパスワードが間違っています。'
       unauthenticated: 'ログインが必要です。'
+
+  date:
+    formats:
+      default: "%Y年%m月%d日"
+      short: "%m月%d日"
+      long: "%Y年%m月%d日 %A"
+
+  time:
+    formats:
+      default: "%Y年%m月%d日 %H:%M"
+      short: "%m月%d日 %H:%M"
+      long: "%Y年%m月%d日 %H:%M %A"
