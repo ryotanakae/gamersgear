@@ -1,0 +1,23 @@
+<li class="dropdown">
+  <button class="btn btn-black position-relative" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fa-regular fa-bell fa-lg"></i>
+    <% unread_count = current_user.notifications.where(read: false).count %>
+    <% if unread_count > 0 %>
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        <%= unread_count %>
+      </span>
+    <% end %>
+  </button>
+  
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+    <% if current_user.notifications.where(read: false).any? %>
+      <small class="dropdown-item disabled">直近10件の未読の通知を表示しています</small>
+      <% current_user.notifications.where(read: false).limit(10).order(created_at: :desc).each do |notification| %>
+        <%= link_to notification_message(notification), notification_path(notification), method: :patch, class: "dropdown-item" %>
+      <% end %>
+      <%= link_to 'すべての通知を削除', destroy_all_notifications_path, method: :delete, remote: true, class: "dropdown-item text-danger" %>
+    <% else %>
+      <span class="dropdown-item disabled">通知はありません</span>
+    <% end %>
+  </div>
+</li>

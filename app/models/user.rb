@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
+  has_many :notifications, dependent: :destroy
 
   # フォローされている関連付け
   has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
@@ -49,6 +50,16 @@ class User < ApplicationRecord
       # デフォルトは部分一致
       where("name LIKE ?", "%#{word}%").where(is_active: true)
     end
+  end
+  
+  # 通知を作成するメソッド
+  def create_notification(action, notifiable)
+    notifications.create(
+      user_id: self.id,
+      action: action,
+      notifiable: notifiable,
+      read: false
+    )
   end
 
   # ゲストユーザー機能

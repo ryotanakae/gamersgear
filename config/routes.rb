@@ -46,6 +46,12 @@ Rails.application.routes.draw do
     get 'search', to: 'searches#search'
     resources :searches, only: [:index]
     resources :categories, only: [:show, :index]
+    
+    resources :notifications, only: [:update, :destroy] do
+      collection do
+        delete :destroy_all
+      end
+    end
 
   end
 

@@ -23,6 +23,18 @@
   font-size: 14px;
 }
 
+.btn-black {
+  background-color: #000;
+  color: #fff;
+  border: none;
+}
+
+.btn-black:hover,
+.btn-black:focus {
+  background-color: #333;
+  color: #fff;
+}
+
 // #about {
 //   height: 700px;
 //   background-image: url('/assets/keybord.jpg');
