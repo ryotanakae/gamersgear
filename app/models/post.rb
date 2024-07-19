@@ -12,10 +12,10 @@ class Post < ApplicationRecord
   validates :star, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }
 
   def get_image
-    image.attached? ? image : 'default-image.jpg'
+    image.attached? ? image : "default-image.jpg"
   end
 
-  #　いいね機能 指定されたユーザーがいいねしているかを確認
+  # 　いいね機能 指定されたユーザーがいいねしているかを確認
   def likes_by?(user)
     likes.exists?(user_id: user.id)
   end
@@ -33,5 +33,4 @@ class Post < ApplicationRecord
       where("title LIKE ? OR body LIKE ?", "%#{word}%", "%#{word}%")
     end
   end
-  
 end

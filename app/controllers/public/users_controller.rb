@@ -6,7 +6,6 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).per(7)
     @posts = sort_posts(@posts)
-    
   end
 
   def edit
@@ -16,7 +15,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = current_user
     if @user .update(user_params)
-      redirect_to user_path(@user), notice: 'プロフィールが更新されました'
+      redirect_to user_path(@user), notice: "プロフィールが更新されました"
     else
       flash.now[:alert] = @user.errors.full_messages.join(", ")
       render :edit
@@ -42,41 +41,39 @@ class Public::UsersController < ApplicationController
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(:name, :email, :is_active, :image, :introduction)
-  end
-
-  def ensure_guest_user
-    @user = User.find(params[:id])
-    if @user.email == "guest@example.com"
-      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    def user_params
+      params.require(:user).permit(:name, :email, :is_active, :image, :introduction)
     end
-  end
 
-  # ソート機能
-  def sort_posts(posts)
-    case params[:sort]
-    when 'newest'
-      # 新着順
-      posts = posts.order(created_at: :desc)
-    when 'oldest'
-      # 古い順
-      posts = posts.order(created_at: :asc)
-    when 'highest_rated'
-      # 評価の高い順
-      posts = posts.order(star: :desc)
-    when 'most_liked'
-      # いいねの多い順
-      posts = posts.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC')
-    when 'most_commented'
-      # コメントの多い順
-      posts = posts.left_joins(:post_comments).group(:id).order('COUNT(post_comments.id) DESC')
-    else
-      # デフォルトはソートなし
-      posts
+    def ensure_guest_user
+      @user = User.find(params[:id])
+      if @user.email == "guest@example.com"
+        redirect_to user_path(current_user), notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      end
     end
-    posts.page(params[:page]).per(7)
-  end
 
+    # ソート機能
+    def sort_posts(posts)
+      case params[:sort]
+      when "newest"
+        # 新着順
+        posts = posts.order(created_at: :desc)
+      when "oldest"
+        # 古い順
+        posts = posts.order(created_at: :asc)
+      when "highest_rated"
+        # 評価の高い順
+        posts = posts.order(star: :desc)
+      when "most_liked"
+        # いいねの多い順
+        posts = posts.left_joins(:likes).group(:id).order("COUNT(likes.id) DESC")
+      when "most_commented"
+        # コメントの多い順
+        posts = posts.left_joins(:post_comments).group(:id).order("COUNT(post_comments.id) DESC")
+      else
+        # デフォルトはソートなし
+        posts
+      end
+      posts.page(params[:page]).per(7)
+    end
 end

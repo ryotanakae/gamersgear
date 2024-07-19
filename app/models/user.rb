@@ -6,11 +6,11 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   # フォローされている関連付け
-  has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   # フォロワーの取得
   has_many :followers, through: :passive_relationships, source: :follower
   # フォローしている関連付け
-  has_many :active_relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
+  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   #  フォローしている人の取得
   has_many :following, through: :active_relationships, source: :followed
 
@@ -20,7 +20,7 @@ class User < ApplicationRecord
   has_one_attached :image
 
   def get_image
-    image.attached? ? image : 'no_image.jpg'
+    image.attached? ? image : "no_image.jpg"
   end
 
   # フォローする
@@ -28,7 +28,7 @@ class User < ApplicationRecord
     active_relationships.create(followed_id: user.id)
   end
 
-  #　フォローを解除する
+  # 　フォローを解除する
   def unfollow(user)
     active_relationships.find_by(followed_id: user.id).destroy
   end
@@ -51,7 +51,7 @@ class User < ApplicationRecord
       where("name LIKE ?", "%#{word}%").where(is_active: true)
     end
   end
-  
+
   # 通知を作成するメソッド
   def create_notification(action, notifiable)
     notifications.create(
@@ -83,21 +83,19 @@ class User < ApplicationRecord
   before_update :deactivate_user, if: :deactivating?
 
   private
+    # is_activeがfalseになる場合に呼ばれるメソッド
+    # ステータスを退会済みにするだけでは関連データが削除されない為に必要
+    def deactivate_user
+      posts.destroy_all
+      post_comments.destroy_all
+      likes.destroy_all
+      passive_relationships.destroy_all
+      active_relationships.destroy_all
+    end
 
-  # is_activeがfalseになる場合に呼ばれるメソッド
-  # ステータスを退会済みにするだけでは関連データが削除されない為に必要
-  def deactivate_user
-    posts.destroy_all
-    post_comments.destroy_all
-    likes.destroy_all
-    passive_relationships.destroy_all
-    active_relationships.destroy_all
-  end
-
-  # is_activeがfalseに変更されたかどうかをチェックするメソッド
-  # ステータスが退会済みであるかどうかを
-  def deactivating?
-    is_active_changed? && !is_active
-  end
-
+    # is_activeがfalseに変更されたかどうかをチェックするメソッド
+    # ステータスが退会済みであるかどうかを
+    def deactivating?
+      is_active_changed? && !is_active
+    end
 end

@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Admin.create!(email: ENV['ADMIN_EMAIL'],password: ENV['ADMIN_PASSWORD'])
+Admin.create!(email: ENV["ADMIN_EMAIL"], password: ENV["ADMIN_PASSWORD"])
 
 users = [
   { email: "kame@kame", name: "かめ", password: "000000", introduction: "かめです　ゲームが好きです", image_path: "#{Rails.root}/db/fixtures/kame.png", filename: "kame.jpg" },
@@ -67,7 +67,7 @@ posts.each do |post_data|
   # ユーザーとカテゴリをメールアドレスとカテゴリ名で検索
   user = User.find_by(email: post_data[:user_email])
   category = Category.find_by(name: post_data[:category_name])
-  
+
   # ユーザーとカテゴリが存在する場合に実行
   if user && category
     # タイトル、ユーザー、カテゴリーに基づいて投稿を検索し、存在しない場合は新規作成

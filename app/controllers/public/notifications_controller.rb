@@ -1,10 +1,10 @@
 class Public::NotificationsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def update
     notification = current_user.notifications.find(params[:id])
     notification.update(read: true)
-    
+
     case notification.notifiable_type
     when "Like"
       redirect_to post_path(notification.notifiable.post)
@@ -16,7 +16,7 @@ class Public::NotificationsController < ApplicationController
       redirect_to root_path, alert: "通知の種類が不明です"
     end
   end
-  
+
   def destroy_all
     current_user.notifications.destroy_all
     respond_to do |format|
@@ -24,5 +24,4 @@ class Public::NotificationsController < ApplicationController
       format.js   # destroy_all.js.erb を呼び出す
     end
   end
-  
 end

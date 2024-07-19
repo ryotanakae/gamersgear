@@ -1,6 +1,6 @@
 class Public::PostCommentsController < ApplicationController
   before_action :authenticate_user!, unless: :admin_signed_in?
-  
+
   def create
     @post = Post.find(params[:post_id])
     @comment = current_user.post_comments.new(post_comment_params)
@@ -11,7 +11,7 @@ class Public::PostCommentsController < ApplicationController
       redirect_to post_path(@post)
     end
   end
-  
+
   def destroy
     @post = Post.find(params[:post_id])
     @comment = PostComment.find(params[:id])
@@ -19,14 +19,12 @@ class Public::PostCommentsController < ApplicationController
     if @comment.user == current_user || admin_signed_in? || @post.user == current_user
       @comment.destroy
     else
-      redirect_to request.referer, alert: 'コメントの削除に失敗しました'
+      redirect_to request.referer, alert: "コメントの削除に失敗しました"
     end
   end
-  
+
   private
-  
-  def post_comment_params
-    params.require(:post_comment).permit(:body)
-  end
-  
+    def post_comment_params
+      params.require(:post_comment).permit(:body)
+    end
 end
