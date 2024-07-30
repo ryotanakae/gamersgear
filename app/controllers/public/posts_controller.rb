@@ -1,6 +1,7 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show], unless: :admin_signed_in?
   before_action :set_categories
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
     @post = Post.new
@@ -66,6 +67,13 @@ class Public::PostsController < ApplicationController
 
     def set_categories
       @categories = Category.all
+    end
+    
+    def correct_user
+      @post = Post.find(params[:id])
+      unless @post.user == current_user || admin_signed_in?
+        redirect_to root_path, alert: "権限がありません"
+      end
     end
 
     # ソート機能
