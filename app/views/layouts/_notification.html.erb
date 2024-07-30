@@ -13,9 +13,9 @@
     <% if current_user.notifications.where(read: false).any? %>
       <small class="dropdown-item disabled">直近10件の未読の通知を表示しています</small>
       <% current_user.notifications.where(read: false).limit(10).order(created_at: :desc).each do |notification| %>
-        <%= link_to notification_message(notification), notification_path(notification), method: :patch, class: "dropdown-item" %>
+        <%= link_to notification_message(notification), public_notification_path(notification), method: :patch, class: "dropdown-item" %>
       <% end %>
-      <%= link_to 'すべての通知を削除', destroy_all_notifications_path, method: :delete, remote: true, class: "dropdown-item text-danger" %>
+      <%= link_to 'すべての通知を削除', destroy_all_public_notifications_path, method: :delete, remote: true, class: "dropdown-item text-danger" %>
     <% else %>
       <span class="dropdown-item disabled">通知はありません</span>
     <% end %>
