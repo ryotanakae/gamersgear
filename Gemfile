@@ -75,5 +75,3 @@ gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
 
-gem 'listen', '~> 3.0'
-
